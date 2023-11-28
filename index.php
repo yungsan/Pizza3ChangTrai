@@ -2,8 +2,6 @@
 ob_start();
 session_start();
 
-
-
 include("includes/header.php");
 
 $page = isset($_GET['page']) ? $_GET['page'] : 'home';
@@ -30,7 +28,7 @@ else if ($page === 'user') {
 } 
 
 else {
-    include 'pages/home.php';
+    include 'pages/404.html';
 }
 
 include("includes/footer.php");

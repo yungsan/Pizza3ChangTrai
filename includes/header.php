@@ -74,8 +74,8 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
                     <a href="./" class="nav-item nav-link active">Trang Chủ</a>
-                    <a href="#" class="nav-item nav-link">Khuyến Mãi</a>
-                    <a href="?page=products" class="nav-item nav-link">Thực đơn</a>
+                    <a href="./?page=promotion" class="nav-item nav-link">Khuyến Mãi</a>
+                    <a href="./?page=products" class="nav-item nav-link">Thực đơn</a>
                     <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu m-0">
@@ -85,9 +85,9 @@
                             <a href="404.html" class="dropdown-item">404 Page</a>
                         </div>
                     </div> -->
-                    <a href="#" class="nav-item nav-link">Chi Nhánh</a>
-                    <a href="#" class="nav-item nav-link">Liên Hệ</a>
-                    <a href="#" class="nav-item nav-link">Blog</a>
+                    <a href="./?page=store" class="nav-item nav-link">Chi Nhánh</a>
+                    <a href="./?page=contact" class="nav-item nav-link">Liên Hệ</a>
+                    <a href="./?page=blog" class="nav-item nav-link">Blog</a>
                 </div>
                 <div class="d-none d-lg-flex ms-2">
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
