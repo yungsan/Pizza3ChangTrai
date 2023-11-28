@@ -36,6 +36,9 @@
 
     <!-- JQuery -->
     <script src="assets/js/jquery.min.js"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico?v=2">
 </head>
 
 <body>
