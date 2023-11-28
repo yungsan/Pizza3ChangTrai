@@ -34,12 +34,12 @@ if (isset($_SESSION['user_id'])){
                         </div>
                         <div class="form-group d-md-flex my-4">
                             <div class="w-50 text-left">
-                                <a href="?page=register">
+                                <a href="?page=register" class="text-secondary">
                                     Đăng ký ngay!
                                 </a>
                             </div>
                             <div class="w-50 text-md-end">
-                                <a href="#">Quên mật khẩu?</a>
+                                <a href="#" class="text-secondary">Quên mật khẩu?</a>
                             </div>
                         </div>
                     </form>

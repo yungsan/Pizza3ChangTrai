@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-group d-md-flex my-4">
                             <div class="w-100 text-center">
-                                <a href="?page=login">
+                                <a href="?page=login" class="text-secondary">
                                     Đã có tài khoản? Đăng nhập ngay.
                                 </a>
                             </div>

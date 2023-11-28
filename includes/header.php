@@ -34,7 +34,8 @@
     <!-- Font Family -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
 
-
+    <!-- JQuery -->
+    <script src="assets/js/jquery.min.js"></script>
 </head>
 
 <body>
@@ -93,7 +94,21 @@
                         <small class="fa fa-search text-body"></small>
                     </a>
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="?page=login">
-                        <small class="fa fa-user text-body"></small>
+                        <?php
+                        if (isset($_SESSION['user_id'])) {
+                            require_once('config/database.php');
+                            $user_id = $_SESSION['user_id'];
+                            $result = $connect->query("SELECT * FROM users WHERE id='$user_id'");
+                            $user = $result->fetch_assoc();
+                            $user_avatar = $user['avatar'];
+                            echo '<img src="'.$user_avatar.'" alt="user avatar"
+                            class="border rounded w-100 h-100 rounded-circle" style="object-fit: cover">';
+                        }
+                        else {
+                            echo '<small class="fa fa-user text-body"></small>';
+                        }
+                        ?>
+                        
                     </a>
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
                         <small class="fa fa-shopping-bag text-body"></small>

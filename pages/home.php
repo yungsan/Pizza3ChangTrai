@@ -49,8 +49,8 @@
     <div class="container">
         <div class="row g-5 align-items-center">
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                <div class="about-img position-relative overflow-hidden p-5 pe-0">
-                    <img class="img-fluid w-100" src="assets/images/about.jpg">
+                <div class="about-img position-relative overflow-hidden p-5 pe-0" style="width: 100%; height: 550px;">
+                    <img class="img-fluid w-100" src="https://images.unsplash.com/photo-1604382355076-af4b0eb60143?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" style="object-fit: cover">
                 </div>
             </div>
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
