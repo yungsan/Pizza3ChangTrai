@@ -11,6 +11,9 @@ if ($page === 'home') {
 } 
 else if ($page === 'products') {
     include 'pages/products/index.php';
+}
+else if ($page === 'create') {
+    include 'pages/products/create.php';
 } 
 else if ($page === 'login') {
     include 'pages/login.php';
