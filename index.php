@@ -27,7 +27,7 @@ else if ($page === 'user') {
     include 'pages/profile/index.php';
 } 
 else if ($page === 'admin') {
-    include 'pages/admin/index.php';
+    header("Location: ./pages/admin/");
 } 
 else {
     include 'pages/404.html';
