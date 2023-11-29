@@ -16,7 +16,7 @@ else if ($page === 'login') {
     include 'pages/login.php';
 } 
 else if ($page === 'logout') {
-    unset($_SESSION["user_id"]);
+    unset($_SESSION["user"]);
     header("Location: ?page=login");
     exit();
 } 
@@ -26,7 +26,9 @@ else if ($page === 'register') {
 else if ($page === 'user') {
     include 'pages/profile/index.php';
 } 
-
+else if ($page === 'admin') {
+    include 'pages/admin/index.php';
+} 
 else {
     include 'pages/404.html';
 }

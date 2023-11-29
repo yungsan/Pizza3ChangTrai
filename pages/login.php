@@ -1,7 +1,13 @@
 <?php 
-if (isset($_SESSION['user_id'])){
-    $user_id = $_SESSION['user_id'];
-    header("Location: ?page=user");
+if (isset($_SESSION['user'])){
+    $page = 'user';
+    if ($_SESSION['user']['role'] == 'admin'){
+        header("Location: ./pages/admin");
+        
+    }
+    else {
+        header("Location: ?page=user");
+    }
     exit();
 }
 ?>

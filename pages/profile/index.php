@@ -1,14 +1,11 @@
 <?php
-require_once('config/database.php');
-$user_id = $_SESSION['user_id'];
-$result = $connect->query("SELECT * FROM users WHERE id='$user_id'");
-$user = $result->fetch_assoc();
+$user = $_SESSION['user'];
 ?>
 <section>
     <div class="container-fluid page-header mb-5" style="background: none">
         <div class="row">
             <div class="col-md-3">
-                <div style="width: 300px; height: 400px; margin: 0 auto;" id="user_avatar">
+                <div style="width: 100%; height: auto; margin: 0 auto;" id="user_avatar">
                     <div class="bg"></div>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                         <path d="M12 9a3.75 3.75 0 100 7.5A3.75 3.75 0 0012 9z" />
@@ -20,15 +17,19 @@ $user = $result->fetch_assoc();
                     <img src="<?php echo $user['avatar']; ?>" alt="user avatar"
                         class=' border rounded w-100 h-100 rounded-circler' style="object-fit: cover" id="avatar">
                     <input type="file" name="avatar" id="inputFile" hidden>
+                    <div class="bg-danger rounded text-white position-absolute end-0 top-0 m-2 py-1 px-3 d-none"
+                        id="warning">New!</div>
                 </div>
+                <button class="btn btn-secondary w-100 p-2 my-2 d-none" id="updateAvatarButton">Cập nhật hình
+                    ảnh</button>
             </div>
 
             <div class="col-md-6">
                 <div class="row">
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-8 mb-3">
                         <h3 class='fw-bold'>Thông tin tài khoản</h3>
                     </div>
-                    <div class="col-md-6 mb-3 text-end">
+                    <div class="col-md-4 mb-3 text-end">
                         <button class='w-100 btn btn-secondary' id="editButton">Chỉnh sửa thông tin</button>
                         <button class='w-100 btn btn-secondary' id="saveButton" style="display: none;">Lưu thông
                             tin</button>
@@ -50,13 +51,12 @@ $user = $result->fetch_assoc();
                     </div>
                     <div class="col-md-12 mb-3">
                         <label for="address" class="form-label">Địa chỉ</label>
-                        <textarea class="form-control" placeholder="Leave a comment here" id="address" rows="10"
-                            disabled readonly><?php echo $user["address"] ?>
-                        </textarea>
+                        <textarea class="form-control" placeholder="Your address here" id="address" rows="10" disabled
+                            readonly><?php echo $user["address"] ?></textarea>
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-md-3">
                 <ul class="list-group">
                     <li class="list-group-item w-100 py-3">
@@ -76,7 +76,6 @@ $user = $result->fetch_assoc();
 </section>
 
 <script>
-    let editing = false;
     const editButton = document.querySelector('#editButton');
     const saveButton = document.querySelector('#saveButton');
     const inputs = document.querySelectorAll('.form-control');
@@ -95,9 +94,11 @@ $user = $result->fetch_assoc();
             input.setAttribute('readonly', '');
             input.setAttribute('disabled', '');
         });
-    })
+    });
 
+    const warning = document.querySelector('#warning');
     const fileInput = document.querySelector('#inputFile');
+    const updateAvatarButton = document.querySelector('#updateAvatarButton');
     document.querySelector('.bg').addEventListener('click', () => {
         fileInput.click();
     })
@@ -105,9 +106,16 @@ $user = $result->fetch_assoc();
     fileInput.onchange = evt => {
         const img = document.querySelector('#avatar');
         const [file] = fileInput.files
-        if (file) {
-            img.src = URL.createObjectURL(file)
+
+        if (file && file.name != "simple_avatar.webp") {
+            warning.classList.remove('d-none');
+            updateAvatarButton.classList.remove('d-none');
         }
+        else {
+            warning.classList.add('d-none');
+            updateAvatarButton.classList.add('d-none');
+        }
+        img.src = URL.createObjectURL(file)
     }
 </script>
 
@@ -116,7 +124,29 @@ $user = $result->fetch_assoc();
         $("#saveButton").on("click", function (e) {
             editUser();
         });
+        $("#updateAvatarButton").on("click", function (e) {
+            updateAvatar();
+        });
     });
+
+    function updateAvatar() {
+        const avatar = $('#inputFile')[0].files[0];
+        const formData = new FormData();
+        formData.append('avatar', avatar);
+        $.ajax({
+            url: "./pages/profile/update_avatar.php",
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                alert(response);
+            },
+            error: function (error) {
+                alert(error);
+            }
+        });
+    }
 
     function editUser() {
         const username = $("#username").val();
@@ -127,10 +157,8 @@ $user = $result->fetch_assoc();
             username, email, sdt, address
         };
 
-        console.log(myData);
-
         $.ajax({
-            url: "./pages/products/update.php",
+            url: "./pages/profile/update_info.php",
             type: "post",
             data: (myData),
             cache: false,

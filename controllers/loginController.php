@@ -3,7 +3,7 @@ require_once("../config/database.php");
 $username = $_POST["username"];
 $password = $_POST["password"];
 
-$sql = "SELECT id
+$sql = "SELECT *
         FROM users 
         WHERE 
             username = '$username' AND 
@@ -16,8 +16,12 @@ if ($result->num_rows == 0) {
 } else {
     $row = $result->fetch_assoc();
     session_start();
-    $_SESSION["user_id"] = $row['id'];
-    header("Location: ../?page=user");
+    $_SESSION["user"] = $row;
+    $page = 'user';
+    if ($_SESSION['user']['role'] == 'admin'){
+        $page = 'admin';
+    }
+    header("Location: ../?page=".$page);
     exit();
 }
 
