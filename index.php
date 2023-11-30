@@ -14,7 +14,10 @@ else if ($page === 'products') {
 }
 else if ($page === 'create') {
     include 'pages/products/create.php';
-} 
+}
+else if ($page === 'detail') {
+    include 'pages/products/detail.php';
+}  
 else if ($page === 'login') {
     include 'pages/login.php';
 } 
