@@ -9,9 +9,11 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 if ($page === 'home') {
     include 'pages/home.php';
 } 
+// products
 else if ($page === 'products') {
     include 'pages/products/index.php';
 } 
+// auth
 else if ($page === 'login') {
     include 'pages/login.php';
 } 
@@ -23,9 +25,11 @@ else if ($page === 'logout') {
 else if ($page === 'register') {
     include 'pages/register.php';
 }
+// user
 else if ($page === 'user') {
     include 'pages/profile/index.php';
 } 
+// admin
 else if ($page === 'admin') {
     header("Location: ./pages/admin/");
 } 

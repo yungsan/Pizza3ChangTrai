@@ -40,8 +40,13 @@ $user = $_SESSION['user'];
                             readonly disabled>
                     </div>
                     <div class="col-md-6 mb-3">
+                        <label for="fullname" class="form-label">Họ tên</label>
+                        <input type="text" class="form-control" id="fullname" value='<?php echo $user["fullname"] ?>' readonly
+                            disabled>
+                    </div>
+                    <div class="col-md-12 mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" value=<?php echo $user["email"] ?> readonly
+                        <input type="email" class="form-control" id="email" value='<?php echo $user["email"] ?>' readonly
                             disabled>
                     </div>
                     <div class="col-md-12 mb-3">
@@ -152,11 +157,12 @@ $user = $_SESSION['user'];
         const username = $("#username").val();
         const email = $("#email").val();
         const sdt = $("#sdt").val();
+        const fullname = $("#fullname").val();
         const address = $("#address").val();
         const myData = {
-            username, email, sdt, address
+        username, email, sdt, address, fullname
         };
-
+        console.log(myData);
         $.ajax({
             url: "./pages/profile/update_info.php",
             type: "post",
