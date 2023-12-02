@@ -40,7 +40,8 @@
                     <div class="row g-4">
                         <!-- products -->
                         <?php
-                            include_once('config/regain.php');
+                            $products = require("controllers/productsController.php");
+                            echo $products;
                         ?>
                         <!-- <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
                             <a class="btn btn-primary rounded-pill py-3 px-5" href="">Browse More Products</a>

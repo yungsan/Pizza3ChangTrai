@@ -33,6 +33,6 @@
         echo "Error: " . $sql . "<br>" . mysqli_error($connect);
     }
 
-        header("Location: http://localhost:8282/Pizza3ChangTrai/?page=products");
+        header("Location: http://localhost/Pizza3ChangTrai/?page=products");
         
 ?>

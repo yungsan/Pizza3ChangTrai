@@ -1,5 +1,5 @@
 <?php
-    include_once('database.php');
+    include_once('config/database.php');
     $sql = "SELECT ID, TenSanPham, DonGia, ChiTiet, HinhAnh FROM sanpham";
     $result = $connect->query($sql);
 
@@ -21,7 +21,7 @@
                 echo'</div>';
                 echo'<div class="d-flex border-top">';
                     echo'<small class="w-50 text-center border-end py-2">';
-                    echo'<a class="text-body" href="http://localhost:8282/Pizza3ChangTrai/?page=detail&&id='.$id.'"><i class="fa fa-eye text-primary me-2"></i>View';
+                    echo'<a class="text-body" href="http://localhost/Pizza3ChangTrai/?page=detail&&id='.$id.'"><i class="fa fa-eye text-primary me-2"></i>View';
                     echo'detail</a>';
                     echo'</small>';
                     echo'<small class="w-50 text-center py-2">';

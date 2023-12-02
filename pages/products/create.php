@@ -1,4 +1,3 @@
-
 <section class="h-80 bg-light mt-5 ">
   <div class="container py-5 h-80">
     <div class="row d-flex justify-content-center align-items-center h-80">
@@ -14,7 +13,7 @@
                                 <img
                                 src="assets/images/blank_img.webp"
                                 alt="Gallery image 1"
-                                class="ecommerce-gallery-main-img active w-100 rounded" id="thumnail" onclick="triggerFileInput()"
+                                class="ecommerce-gallery-main-img active w-100 rounded border border-warning" id="thumnail" onclick="triggerFileInput()"
                                 />
                                 <input type="file" name="productImage[]" id="inputImage" hidden>
                             </div>
@@ -24,7 +23,7 @@
                                 src="assets/images/blank_img.webp"
                                 data-mdb-img="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Vertical/14a.webp"
                                 alt="Gallery image 1"
-                                class="active w-100"
+                                class="active w-100 border border-warning rounded"
                             />
                         </div>
                         <div class="col-3 mt-1">
@@ -32,7 +31,7 @@
                                 src="assets/images/blank_img.webp"
                                 data-mdb-img="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Vertical/12a.webp"
                                 alt="Gallery image 2"
-                                class="w-100"
+                                class="w-100 border border-warning rounded"
                             />
                         </div>
                         <div class="col-3 mt-1">
@@ -40,7 +39,7 @@
                                 src="assets/images/blank_img.webp"
                                 data-mdb-img="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Vertical/13a.webp"
                                 alt="Gallery image 3"
-                                class="w-100"
+                                class="w-100 border border-warning rounded"
                             />
                         </div>
                         <div class="col-3 mt-1">
@@ -48,7 +47,7 @@
                                 src="assets/images/blank_img.webp"
                                 data-mdb-img="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Vertical/15a.webp"
                                 alt="Gallery image 4"
-                                class="w-100"
+                                class="w-100 border border-warning rounded"
                             />
                         </div>
                     </div>
@@ -105,8 +104,8 @@
                     <div class="row">
                         <div class="col-md-3 mb-4">
                             <div class="form-outline">
-                            <label class="form-label" for="form3Example1m">Số lượng</label>
-                            <input type="text" id="form3Example1m" class="form-control form-control-lg" value="1"/>
+                                <label class="form-label" for="form3Example1m">Số lượng</label>
+                                <input type="text"  class="form-control form-control-lg" value=""/>
                             </div>
                         </div>
                         <div class="col-md-9 mb-4">
@@ -132,21 +131,25 @@
     </div>
   </div>
 
-  <script>
-    function triggerFileInput() {
-    document.getElementById('inputImage').click();
-    }
+    <script>
+        // images change
+        function triggerFileInput() {
+            document.getElementById('inputImage').click();
+        }
 
-    document.getElementById('inputImage').addEventListener('change', function(event) {
-    var input = event.target;
-    var reader = new FileReader();
+        document.getElementById('inputImage').addEventListener('change', function(event) {
+            var input = event.target;
+            var reader = new FileReader();
 
-    reader.onload = function(){
-        var image = document.getElementById('thumnail');
-        image.src = reader.result;
-    };
+            reader.onload = function(){
+                var image = document.getElementById('thumnail');
+                image.src = reader.result;
+            };
 
-    reader.readAsDataURL(input.files[0]);
-    });
-</script>
+            reader.readAsDataURL(input.files[0]);
+        });
+
+
+
+    </script>
 </section>
