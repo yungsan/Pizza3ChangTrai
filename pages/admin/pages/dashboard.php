@@ -1,8 +1,8 @@
 <?php
 require_once('../../config/database.php');
 $sql = "SELECT * FROM users WHERE role = 'user'";
-$users = $connect->query($sql);
-$total = $users->num_rows;
+$products = $connect->query($sql);
+$total = $products->num_rows;
 ?>
 
 
@@ -99,7 +99,7 @@ $total = $users->num_rows;
             </thead>
             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                 <?php
-                while ($row = $users->fetch_assoc()) {
+                while ($row = $products->fetch_assoc()) {
                     echo '<tr class="text-gray-700 dark:text-gray-400">
                             <td class="px-4 py-3 text-sm">
                                 ' . ($row['id'] - 1) . '

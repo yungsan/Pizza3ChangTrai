@@ -9,6 +9,12 @@ if ($page === 'dashboard'){
 else if ($page === 'users'){
     include('pages/users/index.php');
 }
+else if ($page === 'products'){
+    include('pages/products/index.php');
+}
+else if ($page === 'create_product'){
+    include('pages/products/create.php');
+}
 else if ($page === 'categories'){
     include('pages/categories/index.php');
 }
