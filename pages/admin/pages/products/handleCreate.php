@@ -41,25 +41,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     //Convert image paths to a JSON string or store in a way that suits your database schema
     $images_json = json_encode($image_paths);
-    var_dump($images_json);
 
-    // // Insert data into the database
-    // $query = "INSERT INTO products (user_id, product_name, price, category_id, description, thumbnail, images) 
-    //           VALUES (:user_id, :product_name, :price, :category_id, :description, :thumbnail, :images)";
-    // $stmt = $pdo->prepare($query);
-    // $stmt->bindParam(':user_id', $user_id);
-    // $stmt->bindParam(':product_name', $product_name);
-    // $stmt->bindParam(':price', $price);
-    // $stmt->bindParam(':category_id', $category_id);
-    // $stmt->bindParam(':description', $description);
-    // $stmt->bindParam(':thumbnail', $thumbnail_path);
-    // $stmt->bindParam(':images', $images_json);
+    // Insert data into the database
+    $query = "INSERT INTO products (user_id, product_name, price, category_id, description, thumbnail, images) 
+              VALUES (:user_id, :product_name, :price, :category_id, :description, :thumbnail, :images)";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->bindParam(':product_name', $product_name);
+    $stmt->bindParam(':price', $price);
+    $stmt->bindParam(':category_id', $category_id);
+    $stmt->bindParam(':description', $description);
+    $stmt->bindParam(':thumbnail', $thumbnail_path);
+    $stmt->bindParam(':images', $images_json);
 
-    // if ($stmt->execute()) {
-    //     echo "Cập nhật sản phẩm thành công.";
-    // } else {
-    //     echo "Cập nhật sản phẩm thất bại";
-    // }
+    if ($stmt->execute()) {
+        echo "Cập nhật sản phẩm thành công.";
+    } else {
+        echo "Cập nhật sản phẩm thất bại";
+    }
 }
 ?>
 
