@@ -54,7 +54,7 @@ $total = $products->num_rows;
                     <th class="px-4 py-3">Chuyên mục</th>
                     <th class="px-4 py-3">Ngày tạo</th>
                     <th class="px-4 py-3">Ngày cập nhật</th>
-                    <th class="px-4 py-3">####</th>
+                    <th class="px-4 py-3">Thao tác</th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -73,7 +73,7 @@ $total = $products->num_rows;
                                     <!-- Avatar with inset shadow -->
                                     <div class="relative hidden w-10 h-10 mr-3 rounded-full md:block">
                                         <img class="object-cover w-full h-full rounded-full"
-                                            src="../../'.$row['thumbnail'].'"
+                                            src="pages/products/'.$row['thumbnail'].'"
                                             alt="" loading="lazy" />
                                         <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
                                         </div>

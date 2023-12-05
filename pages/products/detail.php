@@ -11,7 +11,7 @@
                                     $id = $_GET['id'];
                                     include_once('config/database.php');
 
-                                    $sql = "SELECT*FROM sanpham WHERE ID = $id";
+                                    $sql = "SELECT*FROM products WHERE id = $id";
                                     $result = $connect->query($sql);
                                     $row = $result->fetch_assoc();
                                 ?>
@@ -25,19 +25,18 @@
                                     </div> -->
                                     <div class="text-center p-3 "> 
                                         <?php
-                                            $images = json_decode($row['HinhAnh'], true);
-                                            foreach ($images as $img) {
-                                                echo '<img width="100" height="250" alt="hinh san pham" class="card-img-top rounded" src="'."pages/products/". $img.'"/>';
-                                            }
+                                            $images1 = $row['thumbnail'];
+                                            echo '<img width="100" height="250" alt="hinh san pham" class="card-img-top rounded" src="'."pages/admin/pages/products/". $images1.'"/>';
                                         ?>
                                     </div>
                                     <div class="thumbnail text-center">
-                                            <img onclick="change_image(this)" class="rounded" src="assets/images/blank_img.webp" width="80" height="68"> 
-                                            <img onclick="change_image(this)" class="rounded" src="assets/images/blank_img.webp" width="80" height="68"> 
-                                            <img onclick="change_image(this)" class="rounded" src="assets/images/blank_img.webp" width="80" height="68">
-                                            <img onclick="change_image(this)" class="rounded" src="assets/images/blank_img.webp" width="80" height="68"> 
- 
-                                        </div>
+                                        <?php
+                                            $images2 = json_decode(''.$row['images'].'');
+                                            foreach ($images2 as $img) {
+                                                echo '<img class="rounded mx-2" width="80" height="68" alt="hinh san pham" src="'."pages/admin/pages/products/".$img.'"/>';
+                                            }
+                                        ?>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -45,13 +44,13 @@
                                     <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand">Pizza</span>
                                         <?php
                                         echo'<h5 class="text-uppercase">
-                                                '.$row['ChiTiet'].'';
+                                                '.$row['description'].'';
                                         echo'</h5>';
                                         ?>
                                         <div class="price d-flex flex-row align-items-center"> 
                                             <?php
                                                 echo'<span class="act-price">
-                                                        '.$row['DonGia'].'';
+                                                        '.$row['price'].'';
                                                 echo'</span>';
                                             ?>
                                             <div class="ml-2 mx-2">
