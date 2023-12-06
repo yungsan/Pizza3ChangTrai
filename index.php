@@ -38,6 +38,9 @@ else if ($page === 'user') {
 // admin
 else if ($page === 'admin') {
     header("Location: ./pages/admin/");
+}
+else if ($page === 'cart') {
+    include 'pages/cart/index.php';
 } 
 else {
     include 'pages/404.html';

@@ -26,11 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Validate and sanitize inputs as needed
 
     // Handle file upload (thumbnail)
-    $thumbnail_path = 'uploads/img/'. $_FILES['thumbnail']['name'];
+    $thumbnail_path = 'uploads/img/' . $_FILES['thumbnail']['name'];
     move_uploaded_file($_FILES['thumbnail']['tmp_name'], $thumbnail_path);
 
     // Handle multiple file uploads (images)
-    
+
     $image_paths = [];
     foreach ($_FILES['images']['tmp_name'] as $key => $tmp_name) {
         $image_path = 'uploads/thumbnail/' . time() . '_' . $_FILES['images']['name'][$key];
