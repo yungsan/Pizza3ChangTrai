@@ -3,7 +3,7 @@
     <div class="container mt-5 ">
             <div class="row d-flex justify-content-center ">
                 <div class="col-md-10 mt-5">
-                    <div class="card mt-5 ">
+                    <div class="card mt-5 border border-danger ">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="images p-3">
@@ -26,7 +26,7 @@
                                     <div class="text-center p-3 "> 
                                         <?php
                                             $images1 = $row['thumbnail'];
-                                            echo '<img width="100" height="250" alt="hinh san pham" class="card-img-top rounded" src="'."pages/admin/pages/products/". $images1.'"/>';
+                                            echo '<img style="object-fit: cover;" width="110" height="280" alt="hinh san pham" class="card-img-top rounded" src="'."pages/admin/pages/products/". $images1.'"/>';
                                         ?>
                                     </div>
                                     <div class="thumbnail text-center">
@@ -44,10 +44,10 @@
                                     <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand">Pizza</span>
                                         <?php
                                         echo'<h5 class="text-uppercase">
-                                                '.$row['description'].'';
+                                                '.$row['product_name'].'';
                                         echo'</h5>';
                                         ?>
-                                        <div class="price d-flex flex-row align-items-center"> 
+                                        <div class="price mt-3  d-flex flex-row align-items-center"> 
                                             <?php
                                                 echo'<span class="act-price">
                                                         '.$row['price'].'';
@@ -59,10 +59,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <p class="about">
-                                    Pizza Hải Sản Xốt Pesto Với Hải Sản (Tôm, Mực) Nhân Đôi Cùng Với Nấm Trên Nền Xốt Pesto Đặc Trưng, Phủ Phô Mai Mozzarella Từ New Zealand Và Quế Tây.
-                                    </p>
-                                    <div class="mt-2">
+                                    <?php
+                                        echo'<p class="about my-3">
+                                                Chi tiết sản phẩm:
+                                                '.$row['description'].'';
+                                        echo'</p>';
+                                    ?>
+                                    <div class="mt-5">
                                         <label for="" class="text-uppercase h6 radio">Số lượng</label>
                                         <input type="text" class="" name="" id="" value=" 1" style="width: 2rem; height:1.5rem;"/>
                                     </div>
@@ -81,7 +84,7 @@
                                             </label> 
                                         </div>
                                     </div>
-                                    <div class="cart mt-4 mb-2 align-items-center">
+                                    <div class="cart mt-5 mb-2 align-items-center">
                                         <button class="btn btn-danger text-uppercase mr-2 px-4">Thêm vào giỏ hàng</button>
                                         <button class="btn btn-warning text-uppercase mr-2 px-4 mx-3">Mua ngay</button>  
                                     </div>

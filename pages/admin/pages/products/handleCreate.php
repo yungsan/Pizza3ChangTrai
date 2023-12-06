@@ -9,7 +9,7 @@ try {
     // Set the PDO error mode to exception
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
+    echo "Kết nối thất bại: " . $e->getMessage();
     die();
 }
 ?>
@@ -45,6 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Insert data into the database
     $query = "INSERT INTO products (user_id, product_name, price, category_id, description, thumbnail, images) 
               VALUES (:user_id, :product_name, :price, :category_id, :description, :thumbnail, :images)";
+
+    //          
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':user_id', $user_id);
     $stmt->bindParam(':product_name', $product_name);
