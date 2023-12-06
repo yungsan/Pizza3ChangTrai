@@ -114,6 +114,7 @@
                         
                     </a>
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="?page=cart">
+                    <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
                         <small class="fa fa-shopping-bag text-body"></small>
                     </a>
                 </div>

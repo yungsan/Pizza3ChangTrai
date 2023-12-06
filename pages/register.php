@@ -12,7 +12,7 @@
                         </div>
                     </div>
 
-                    <form action="controllers/registerController.php" method="POST" class="signin-form">
+                    <form action="pages/handleRegister.php" method="POST" class="signin-form">
                         <div class="form-group mb-3">
                             <label class="form-label fw-bold" for="username">Tên đăng nhập</label>
                             <input type="text" name="username" class="form-control p-3 rounded-pill" placeholder="Username" required>

@@ -1,10 +1,11 @@
 <?php
 require_once('../../config/database.php');
-$sql = "SELECT * FROM users WHERE role = 'user'";
+$sql = "SELECT * FROM categories";
 $products = $connect->query($sql);
 $total = $products->num_rows;
-?>
 
+$url = basename($_SERVER['REQUEST_URI']);
+?>
 
 <!-- Cards -->
 <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
@@ -19,7 +20,7 @@ $total = $products->num_rows;
         </div>
         <div>
             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                Total clients
+                Số lượng
             </p>
             <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                 <?php echo $total ?>
@@ -27,59 +28,20 @@ $total = $products->num_rows;
         </div>
     </div>
     <!-- Card -->
-    <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+    <a href="./?page=create_category" class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
         <div class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
                 <path fill-rule="evenodd"
-                    d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
-                    clip-rule="evenodd"></path>
+                    d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z"
+                    clip-rule="evenodd" />
             </svg>
         </div>
         <div>
-            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                Account balance
-            </p>
             <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                $ 46,760.89
+                Thêm mới
             </p>
         </div>
-    </div>
-    <!-- Card -->
-    <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-        <div class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                    d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z">
-                </path>
-            </svg>
-        </div>
-        <div>
-            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                New sales
-            </p>
-            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                376
-            </p>
-        </div>
-    </div>
-    <!-- Card -->
-    <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-        <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd"
-                    d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
-                    clip-rule="evenodd"></path>
-            </svg>
-        </div>
-        <div>
-            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                Pending contacts
-            </p>
-            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                35
-            </p>
-        </div>
-    </div>
+    </a>
 </div>
 
 <!-- New Table -->
@@ -90,54 +52,58 @@ $total = $products->num_rows;
                 <tr
                     class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                     <th class="px-4 py-3">#</th>
-                    <th class="px-4 py-3">Khách hàng</th>
-                    <th class="px-4 py-3">Username</th>
-                    <th class="px-4 py-3">Số điện thoại</th>
-                    <th class="px-4 py-3">Ngày tham gia</th>
-                    <th class="px-4 py-3">Địa chỉ</th>
+                    <th class="px-4 py-3">Tên chuyên mục</th>
+                    <th class="px-4 py-3">Số lượng sản phẩm</th>
+                    <th class="px-4 py-3">Ngày tạo</th>
+                    <th class="px-4 py-3">Ngày cập nhật</th>
+                    <th class="px-4 py-3">####</th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                 <?php
+                $i = 1;
                 while ($row = $products->fetch_assoc()) {
                     echo '<tr class="text-gray-700 dark:text-gray-400">
                             <td class="px-4 py-3 text-sm">
-                                ' . ($row['id'] - 1) . '
+                                ' . $i . '
                             </td>
                             <td class="px-4 py-3">
                                 <div class="flex items-center text-sm">
                                     <!-- Avatar with inset shadow -->
-                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                    <div class="relative hidden w-10 h-10 mr-3 rounded-full md:block">
                                         <img class="object-cover w-full h-full rounded-full"
-                                            src="../../' . $row['avatar'] . '"
+                                            src="pages/categories/'.$row['thumbnail'].'"
                                             alt="" loading="lazy" />
                                         <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
                                         </div>
                                     </div>
                                     <div>
-                                        <p class="font-semibold">' . $row['fullname'] . '</p>
-                                        <p class="text-xs text-gray-600 dark:text-gray-400">'
-                        . $row['email'] .
-                        '</p>
+                                        <p class="font-semibold">' . $row['category_name'] . '</p>
                                     </div>
                                 </div>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                ' . $row['username'] . '
-                            </td>
-                            <td class="px-4 py-3 text-sm">
-                                ' . $row['sdt'] . '
+                                0
                             </td>
                             <td class="px-4 py-3 text-xs">
                                 <span
                                     class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                    ' . $row['joined'] . '
+                                    ' . $row['created_at'] . '
                                 </span>
                             </td>
-                            <td class="px-4 py-3 text-sm">
-                                ' . $row['address'] . '
+                            <td class="px-4 py-3 text-xs">
+                                <span
+                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                    ' . $row['updated_at'] . '
+                                </span>
+                            </td>
+                            <td class="px-4 py-3 text-xs text-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-red-700  rounded-full dark:bg-red-700 dark:text-red-100 cursor-pointer">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9.75L14.25 12m0 0l2.25 2.25M14.25 12l2.25-2.25M14.25 12L12 14.25m-2.58 4.92l-6.375-6.375a1.125 1.125 0 010-1.59L9.42 4.83c.211-.211.498-.33.796-.33H19.5a2.25 2.25 0 012.25 2.25v10.5a2.25 2.25 0 01-2.25 2.25h-9.284c-.298 0-.585-.119-.796-.33z" />
+                                </svg>
                             </td>
                         </tr>';
+                        $i++;
                 }
                 ?>
             </tbody>

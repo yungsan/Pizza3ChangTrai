@@ -25,7 +25,7 @@ if (isset($_SESSION['user'])){
                         </div>
                     </div>
 
-                    <form action="controllers/loginController.php" class="signin-form" method="POST">
+                    <form action="pages/handleLogin.php" class="signin-form" method="POST">
                         <div class="form-group mb-3">
                             <label class="form-label fw-bold" for="username">Tên đăng nhập</label>
                             <input type="text" name="username" class="form-control p-3 rounded-pill" placeholder="Username" required>
