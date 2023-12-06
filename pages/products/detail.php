@@ -115,14 +115,14 @@
         var productId = <?php echo $row['id']; ?>;
         var productName = '<?php echo $row['product_name']; ?>';
         var productPrice = <?php echo $row['price']; ?>;
-        var productName = '<?php echo $row['thumbnail']; ?>';
+        var thumbnail = '<?php echo $row['thumbnail']; ?>';
         var selectedSize = $('input[name="size"]:checked').val();
 
         var data1 = {
             id: productId,
             name: productName,
             price: productPrice,
-            thumbnail: productName,
+            thumbnail: thumbnail,
             size: selectedSize
         };
 

@@ -10,8 +10,7 @@
 
                 <?php
                   require_once('config/database.php');
-                  $id = $_GET['id'];
-                  $sql = "SELECT*FROM products WHERE id = $id";
+                  $sql = "SELECT*FROM carts";
                   $result = $connect->query($sql);
                   $row = $result->fetch_assoc();
                 ?>
