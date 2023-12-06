@@ -95,7 +95,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <div class="navbar-nav ms-auto p-4 p-lg-0 position-relative">
                     <a href="./" class="nav-item nav-link active">Trang Chủ</a>
                     <a href="./?page=promotion" class="nav-item nav-link">Khuyến Mãi</a>
                     <a href="./?page=products" class="nav-item nav-link">Thực đơn</a>
@@ -111,20 +111,26 @@
                     <a href="./?page=store" class="nav-item nav-link">Chi Nhánh</a>
                     <a href="./?page=contact" class="nav-item nav-link">Liên Hệ</a>
                     <a href="./?page=blog" class="nav-item nav-link">Blog</a>
+                    <div class="position-absolute top-50 start-0 py-2 d-none w-100" id="search_input">
+                        <a href="#" id="search_form" class="nav-item nav-link">
+                            <input type="text" class='w-75 p-3 form-control rounded-pill rounded-end' name='keyword' placeholder="Nhập tên món ăn">
+                        </a>
+                        <button class='btn btn-primary p-3 position-absolute top-50 end-0 translate-middle rounded-pill rounded-start' id='search_submit'>Tìm kiếm</button>
+                    </div>
                 </div>
                 <div class="d-none d-lg-flex ms-2">
-                    <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
+                    <span class="btn-sm-square bg-white rounded-circle ms-3" id="search_icon">
                         <small class="fa fa-search text-body"></small>
-                    </a>
+                    </span>
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="?page=login">
                         <?php
-                        if (isset($_SESSION['user'])) {
+                        if(isset($_SESSION['user'])) {
                             require_once('config/database.php');
                             $user_id = $_SESSION['user']['id'];
-                            $result = $connect->query("SELECT * FROM users WHERE id='$user_id'");
-                            $user = $result->fetch_assoc();
+                            $products = $connect->query("SELECT * FROM users WHERE id='$user_id'");
+                            $user = $products->fetch_assoc();
                             $user_avatar = $user['avatar'];
-                            echo '<img src="' . $user_avatar . '" alt="user avatar"
+                            echo '<img src="'.$user_avatar.'" alt="user avatar"
                             class="border rounded w-100 h-100 rounded-circle" style="object-fit: cover">';
                         } else {
                             echo '<small class="fa fa-user text-body"></small>';
@@ -132,7 +138,7 @@
                         ?>
 
                     </a>
-                    <a class="btn-sm-square bg-white rounded-circle ms-3 position-relative" href="">
+                    <a class="btn-sm-square bg-white rounded-circle ms-3 position-relative" href="?page=cart">
                         <small class="fa fa-shopping-bag text-body"></small>
                         <span class="position-absolute bg-primary rounded-circle w-75 h-75 text-black text-center"
                             style="top: -10px; right: -10px" id='cart'>0</span>
@@ -140,5 +146,17 @@
                 </div>
             </div>
         </nav>
+        <script>
+            const search_input = document.querySelector('#search_input');
+            const search_icon = document.querySelector('#search_icon');
+            const search_submit = document.querySelector('#search_submit');
+            const search_form = document.querySelector('#search_form');
+            search_icon.onclick = () => {
+                search_input.classList.toggle("d-none");
+            };
+            search_submit.onclick = () => {
+                search_form.submit();
+            };
+        </script>
     </div>
     <!-- Navbar End -->

@@ -9,12 +9,12 @@ $sql = "SELECT *
             username = '$username' AND 
             password = '$password'";
 
-$result = $connect->query($sql);
+$products = $connect->query($sql);
 
-if ($result->num_rows == 0) {
+if ($products->num_rows == 0) {
     echo "dang nhap that bai";
 } else {
-    $product = $result->fetch_assoc();
+    $product = $products->fetch_assoc();
     session_start();
     $_SESSION["user"] = $product;
     $page = 'user';

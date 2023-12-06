@@ -11,6 +11,10 @@ a{
     text-decoration: none !important;
 }
 
+.object-fit-cover{
+    object-fit: cover !important;
+}
+
 .back-to-top {
     position: fixed;
     display: none;

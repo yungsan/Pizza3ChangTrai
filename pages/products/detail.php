@@ -65,6 +65,7 @@ $category = ($connect->query($sql))->fetch_assoc();
                         <span class='text-secondary fw-bold h3'>
                             <?php echo number_format($product['price'], 0, '.', '.'); ?> đ
                         </span>
+                        <input type="number" id='product_price' hidden value="<?php echo $product['price'] ?>" />
                         <span class='text-muted text-decoration-line-through'>
                             499.000 đ
                         </span>
@@ -151,13 +152,19 @@ $category = ($connect->query($sql))->fetch_assoc();
 
     addToCart_button.onclick = () => {
         const product_id = Number(document.querySelector('#pid').value);
+        const product_name = document.querySelector('#product_name').innerText;
+        const product_price = Number(document.querySelector('#product_price').value);
         const amount = Number(amount_input.value);
         const size = document.querySelector('.activeSize').innerHTML;
+        const thumbnail = document.querySelector('img[alt="thumbnail"]').src;
 
         const data = {
             product_id,
+            product_name,
+            product_price,
             amount,
-            size
+            size,   
+            thumbnail
         };
 
         const cart_values = JSON.parse(localStorage.getItem('cart'));

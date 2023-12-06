@@ -39,8 +39,20 @@ else if ($page === 'user') {
 else if ($page === 'admin') {
     header("Location: ./pages/admin/");
 } 
+// cart
+else if ($page === 'cart') {
+    include 'pages/cart/index.php';
+}
+else if ($page === 'contact') {
+    include 'pages/contact/contact.php';
+}
 else {
-    include 'pages/404.html';
+    if (isset($_GET['keyword'])) {
+        echo 'hihihih';
+    }
+    else {
+        include 'pages/404.html';
+    }
 }
 
 include("includes/footer.php");
