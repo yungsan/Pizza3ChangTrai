@@ -14,9 +14,9 @@ $result = $connect->query($sql);
 if ($result->num_rows == 0) {
     echo "dang nhap that bai";
 } else {
-    $row = $result->fetch_assoc();
+    $product = $result->fetch_assoc();
     session_start();
-    $_SESSION["user"] = $row;
+    $_SESSION["user"] = $product;
     $page = 'user';
     if ($_SESSION['user']['role'] == 'admin'){
         $page = 'admin';

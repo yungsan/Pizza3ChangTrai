@@ -26,8 +26,8 @@
                     require_once('../../config/database.php');
                     $sql = "SELECT * FROM categories";
                     $categories = $connect->query($sql);
-                    while ($row = $categories->fetch_assoc()) {
-                        echo '<option value="' . $row['id'] . '">' . $row['category_name'] . '</option>';
+                    while ($product = $categories->fetch_assoc()) {
+                        echo '<option value="' . $product['id'] . '">' . $product['category_name'] . '</option>';
                     }
                     ?>
                 </select>
@@ -108,10 +108,9 @@
         const product_description = $("#product_description").val();
         const product_thunbnail = $("#thumbnail_input")[0].files[0];
         const product_images = $("#images_input").prop("files");
-
-        console.log(product_name, product_price, product_category, product_description, product_thunbnail, user_id);
-        console.log(product_images);
+        
         const formData = new FormData();
+
         formData.append("user_id", user_id);
         formData.append("product_name", product_name);
         formData.append("price", product_price);
@@ -121,7 +120,7 @@
         for (const image of product_images) {
             formData.append("images[]", image);
         }
-
+        console.log(product_images);
         $.ajax({
             url: "pages/products/handleCreate.php",
             type: 'POST',
@@ -129,6 +128,7 @@
             processData: false,
             contentType: false,
             success: function (response) {
+                console.log(response);
                 alert(response);
             },
             error: function (error) {

@@ -1,105 +1,178 @@
+<?php
+$id = $_GET['id'];
+include_once('config/database.php');
 
-<section>
-    <div class="container mt-5 ">
-            <div class="row d-flex justify-content-center ">
-                <div class="col-md-10 mt-5">
-                    <div class="card mt-5 ">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="images p-3">
+$sql = "SELECT * FROM products WHERE id = $id";
+$product = ($connect->query($sql))->fetch_assoc();
+$images = json_decode($product['images'], true);
+$c_id = $product['category_id'];
+$sql = "SELECT category_name FROM categories WHERE categories.id = $c_id";
+$category = ($connect->query($sql))->fetch_assoc();
+?>
+<style>
+    .activeSize {
+        background: #F17228 !important;
+        border-color: #F17228 !important;
+        font-weight: bold;
+        color: white !important;
+    }
+</style>
+<section class="container-fluid page-header mb-5 wow fadeIn bg-none" style="background: none; padding-top: 8rem"
+    data-wow-delay="0.1s">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12" style='width: 100%; height: 500px;'>
+                            <img src="pages/admin/pages/products/<?php echo $product['thumbnail']; ?>" alt="thumbnail"
+                                class='img-thumbnail border-0 rounded-4 w-100 h-100' style="object-fit: cover;">
+                        </div>
+                        <div class="col-md-12 position-relative mt-1 w-100" style='overflow-x: scroll'
+                            id="imagesContainer">
+                            <div class="d-flex gap-2" style='width: <?php echo count($images) * 100 ?>px;'>
                                 <?php
-                                    $id = $_GET['id'];
-                                    include_once('config/database.php');
-
-                                    $sql = "SELECT*FROM sanpham WHERE ID = $id";
-                                    $result = $connect->query($sql);
-                                    $row = $result->fetch_assoc();
+                                foreach ($images as $image) {
+                                    echo " <div style='width: 100px; height: 100px;'>
+                                                <img src=pages/admin/pages/products/" . $image . " alt='image' class='product_image border-0 rounded-4 w-100 h-100' style='object-fit: cover'>
+                                            </div>";
+                                }
                                 ?>
-                                    <!-- <div class="text-center p-4">
-                                        <?php
-                                            // $images = json_decode($row['HinhAnh'], true);
-                                            // foreach ($images as $img) {
-                                            //     echo '<img width="100" height="320" alt="hinh san pham" class="card-img-top" src="'."pages/products/". $img.'"/>';
-                                            // }
-                                        ?>
-                                    </div> -->
-                                    <div class="text-center p-3 "> 
-                                        <?php
-                                            $images = json_decode($row['HinhAnh'], true);
-                                            foreach ($images as $img) {
-                                                echo '<img width="100" height="250" alt="hinh san pham" class="card-img-top rounded" src="'."pages/products/". $img.'"/>';
-                                            }
-                                        ?>
-                                    </div>
-                                    <div class="thumbnail text-center">
-                                            <img onclick="change_image(this)" class="rounded" src="assets/images/blank_img.webp" width="80" height="68"> 
-                                            <img onclick="change_image(this)" class="rounded" src="assets/images/blank_img.webp" width="80" height="68"> 
-                                            <img onclick="change_image(this)" class="rounded" src="assets/images/blank_img.webp" width="80" height="68">
-                                            <img onclick="change_image(this)" class="rounded" src="assets/images/blank_img.webp" width="80" height="68"> 
- 
-                                        </div>
-                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="product p-2">
-                                    <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand">Pizza</span>
-                                        <?php
-                                        echo'<h5 class="text-uppercase">
-                                                '.$row['ChiTiet'].'';
-                                        echo'</h5>';
-                                        ?>
-                                        <div class="price d-flex flex-row align-items-center"> 
-                                            <?php
-                                                echo'<span class="act-price">
-                                                        '.$row['DonGia'].'';
-                                                echo'</span>';
-                                            ?>
-                                            <div class="ml-2 mx-2">
-                                                <small class="dis-price">130,000đ</small> 
-                                                <span> 10% OFF</span> 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="about">
-                                    Pizza Hải Sản Xốt Pesto Với Hải Sản (Tôm, Mực) Nhân Đôi Cùng Với Nấm Trên Nền Xốt Pesto Đặc Trưng, Phủ Phô Mai Mozzarella Từ New Zealand Và Quế Tây.
-                                    </p>
-                                    <div class="mt-2">
-                                        <label for="" class="text-uppercase h6 radio">Số lượng</label>
-                                        <input type="text" class="" name="" id="" value=" 1" style="width: 2rem; height:1.5rem;"/>
-                                    </div>
-                                    <div class="row">
-                                        <div class="sizes mt-3">
-                                            <h6 class="text-uppercase">Size</h6> 
-                                            <label class="radio">
-                                                <input type="radio" name="size" value="S" checked> 
-                                                <span>S</span> 
-                                            </label> 
-                                            <label class="radio"> <input type="radio" name="size" value="M"> 
-                                                <span>M</span> 
-                                            </label> 
-                                            <label class="radio"> <input type="radio" name="size" value="L"> 
-                                                <span>L</span> 
-                                            </label> 
-                                        </div>
-                                    </div>
-                                    <div class="cart mt-4 mb-2 align-items-center">
-                                        <button class="btn btn-danger text-uppercase mr-2 px-4">Thêm vào giỏ hàng</button>
-                                        <button class="btn btn-warning text-uppercase mr-2 px-4 mx-3">Mua ngay</button>  
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 px-5">
+                    <div class="mb-3">
+                        <input type="text" id="pid" hidden value="<?php echo $product['id']; ?>">
+                    </div>
+                    <div class="mb-3">
+                        <span class='text-secondary fw-bold'>
+                            <?php echo $category['category_name']; ?>
+                        </span>
+                    </div>
+                    <div class="mb-3">
+                        <h3 class='text-uppercase' id="product_name">
+                            <?php echo $product['product_name']; ?>
+                        </h3>
+                    </div>
+                    <div class="mb-3">
+                        <p class='text-muted lh-lg'>
+                            <?php echo $product['description']; ?>
+                        </p>
+                    </div>
+                    <div class="mb-3">
+                        <span class='text-secondary fw-bold h3'>
+                            <?php echo number_format($product['price'], 0, '.', '.'); ?> đ
+                        </span>
+                        <span class='text-muted text-decoration-line-through'>
+                            499.000 đ
+                        </span>
+                    </div>
+                    <div class="mb-2">
+                        <label class='d-block fw-bold'>Kích thước</label>
+                        <div class="d-flex col-md-6 gap-3" id='sizes'>
+                            <button class="activeSize w-25 form-control text-center ">S</button>
+                            <button class="w-25 form-control text-center ">M</button>
+                            <button class="w-25 form-control text-center ">L</button>
+
+                        </div>
+                    </div>
+                    <div class="mb-4 d-flex gap-2 flex-wrap">
+                        <label class='d-block mb-1 fw-bold w-100'>Số lượng</label>
+                        <button style='width: 40px; height: 40px' class='btn border' id='down'>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
+                            </svg>
+                        </button>
+                        <input type="text" id='so_luong' value="1"
+                            class='form-control text-center border-end-0 border-start-0 border-top-0 rounded-0 border-primary'
+                            style="width: 15%" readonly>
+                        <button style='width: 40px; height: 40px' class='btn border' id='up'>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="col-md-6">
+                            <button id='addToCart_button' class='btn btn-primary p-3 rounded-pill w-100'>Thêm vào giỏ
+                                hàng</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class='btn btn-secondary p-3 rounded-pill w-100'>Mua ngay</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
 <script>
-    function change_image(image){
-    var image_container = document.getElementById("main-image");
+    const imagesContainer = document.querySelector('#imagesContainer');
+    xScroll(imagesContainer);
+    const product_images = imagesContainer.querySelectorAll('.product_image');
+    product_images.forEach(image => {
+        image.onclick = () => {
+            document.querySelector('img[alt="thumbnail"]').src = image.src;
+        }
+    });
 
 
-  image_container.src = image.src;
+    const size_buttons = document.querySelectorAll('#sizes button');
+    size_buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (!btn.classList.contains('activeSize')) {
+                document.querySelector('.activeSize').classList.remove('activeSize');
+                btn.classList.add('activeSize');
+            }
+        });
+    });
 
-}
+    const increase_button = document.querySelector('#up');
+    const decrease_button = document.querySelector('#down');
+    const amount_input = document.querySelector('#so_luong');
+    increase_button.addEventListener('click', () => {
+        const currentValue = Number(amount_input.value);
+        amount_input.value = currentValue + 1;
+    })
+    decrease_button.addEventListener('click', () => {
+        const currentValue = Number(amount_input.value);
+        if (currentValue == 1) {
+            return;
+        }
+        amount_input.value = currentValue - 1;
+    })
+
+    const addToCart_button = document.querySelector('#addToCart_button');
+
+    addToCart_button.onclick = () => {
+        const product_id = Number(document.querySelector('#pid').value);
+        const amount = Number(amount_input.value);
+        const size = document.querySelector('.activeSize').innerHTML;
+
+        const data = {
+            product_id,
+            amount,
+            size
+        };
+
+        const cart_values = JSON.parse(localStorage.getItem('cart'));
+        cart_values.push(data);
+        localStorage.setItem('cart', JSON.stringify(cart_values));
+        cart_count.innerHTML = cart_values.length;
+    }
+
+    function xScroll(element) {
+        element.addEventListener('wheel', (event) => {
+            event.preventDefault();
+
+            element.scrollBy({
+                left: event.deltaY < 0 ? -30 : 30,
+            });
+        });
+    }
 </script>

@@ -75,6 +75,19 @@
 
 <!-- Template Javascript -->
 <script src="assets/js/main.js"></script>
+<script>
+    const cart_count = document.querySelector('#cart');
+    let cart = localStorage.getItem('cart');
+    let number_of_cart = 0;
+    if (!cart) {
+        localStorage.setItem('cart', '[]');
+    }
+    else {
+        number_of_cart = JSON.parse(localStorage.getItem('cart')).length;
+    }
+    cart_count.innerHTML =number_of_cart;
+    
+</script>
 </body>
 
 </html>

@@ -21,7 +21,7 @@ $total = $products->num_rows;
             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                 <?php
                 $i = 1;
-                while ($row = $products->fetch_assoc()) {
+                while ($product = $products->fetch_assoc()) {
                     echo '<tr class="text-gray-700 dark:text-gray-400">
                             <td class="px-4 py-3 text-sm">
                                 ' . $i . '
@@ -31,33 +31,33 @@ $total = $products->num_rows;
                                     <!-- Avatar with inset shadow -->
                                     <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
                                         <img class="object-cover w-full h-full rounded-full"
-                                            src="../../' . $row['avatar'] . '"
+                                            src="../../' . $product['avatar'] . '"
                                             alt="" loading="lazy" />
                                         <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
                                         </div>
                                     </div>
                                     <div>
-                                        <p class="font-semibold">' . $row['fullname'] . '</p>
+                                        <p class="font-semibold">' . $product['fullname'] . '</p>
                                         <p class="text-xs text-gray-600 dark:text-gray-400">'
-                        . $row['email'] .
+                        . $product['email'] .
                         '</p>
                                     </div>
                                 </div>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                ' . $row['username'] . '
+                                ' . $product['username'] . '
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                ' . $row['sdt'] . '
+                                ' . $product['sdt'] . '
                             </td>
                             <td class="px-4 py-3 text-xs">
                                 <span
                                     class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                    ' . $row['joined'] . '
+                                    ' . $product['joined'] . '
                                 </span>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                ' . $row['address'] . '
+                                ' . $product['address'] . '
                             </td>
                         </tr>';
                         $i++;   

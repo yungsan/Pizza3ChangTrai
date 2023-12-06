@@ -39,6 +39,26 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico?v=2">
+    <style>
+        .text {
+            overflow: hidden;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 1;
+            /* number of lines to show */
+            line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #FFB30E;
+            border-radius: .25rem;
+        }
+    </style>
 </head>
 
 <body>
@@ -98,23 +118,24 @@
                     </a>
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="?page=login">
                         <?php
-                        if (isset($_SESSION['user_id'])) {
+                        if (isset($_SESSION['user'])) {
                             require_once('config/database.php');
-                            $user_id = $_SESSION['user_id'];
+                            $user_id = $_SESSION['user']['id'];
                             $result = $connect->query("SELECT * FROM users WHERE id='$user_id'");
                             $user = $result->fetch_assoc();
                             $user_avatar = $user['avatar'];
-                            echo '<img src="'.$user_avatar.'" alt="user avatar"
+                            echo '<img src="' . $user_avatar . '" alt="user avatar"
                             class="border rounded w-100 h-100 rounded-circle" style="object-fit: cover">';
-                        }
-                        else {
+                        } else {
                             echo '<small class="fa fa-user text-body"></small>';
                         }
                         ?>
-                        
+
                     </a>
-                    <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
+                    <a class="btn-sm-square bg-white rounded-circle ms-3 position-relative" href="">
                         <small class="fa fa-shopping-bag text-body"></small>
+                        <span class="position-absolute bg-primary rounded-circle w-75 h-75 text-black text-center"
+                            style="top: -10px; right: -10px" id='cart'>0</span>
                     </a>
                 </div>
             </div>

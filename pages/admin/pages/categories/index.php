@@ -62,7 +62,7 @@ $url = basename($_SERVER['REQUEST_URI']);
             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                 <?php
                 $i = 1;
-                while ($row = $products->fetch_assoc()) {
+                while ($product = $products->fetch_assoc()) {
                     echo '<tr class="text-gray-700 dark:text-gray-400">
                             <td class="px-4 py-3 text-sm">
                                 ' . $i . '
@@ -72,13 +72,13 @@ $url = basename($_SERVER['REQUEST_URI']);
                                     <!-- Avatar with inset shadow -->
                                     <div class="relative hidden w-10 h-10 mr-3 rounded-full md:block">
                                         <img class="object-cover w-full h-full rounded-full"
-                                            src="pages/categories/'.$row['thumbnail'].'"
+                                            src="pages/categories/'.$product['thumbnail'].'"
                                             alt="" loading="lazy" />
                                         <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
                                         </div>
                                     </div>
                                     <div>
-                                        <p class="font-semibold">' . $row['category_name'] . '</p>
+                                        <p class="font-semibold">' . $product['category_name'] . '</p>
                                     </div>
                                 </div>
                             </td>
@@ -88,13 +88,13 @@ $url = basename($_SERVER['REQUEST_URI']);
                             <td class="px-4 py-3 text-xs">
                                 <span
                                     class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                    ' . $row['created_at'] . '
+                                    ' . $product['created_at'] . '
                                 </span>
                             </td>
                             <td class="px-4 py-3 text-xs">
                                 <span
                                     class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                    ' . $row['updated_at'] . '
+                                    ' . $product['updated_at'] . '
                                 </span>
                             </td>
                             <td class="px-4 py-3 text-xs text-right">
