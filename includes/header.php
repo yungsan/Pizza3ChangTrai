@@ -127,9 +127,9 @@
                         if(isset($_SESSION['user'])) {
                             require_once('config/database.php');
                             $user_id = $_SESSION['user']['id'];
-                            $users = $connect->query("SELECT * FROM users WHERE id='$user_id'");
-                            $user = $users->fetch_assoc();
-                            $user_avatar = $user['avatar'];
+                            $products = $connect->query("SELECT * FROM users WHERE id='$user_id'");
+                            $product = $products->fetch_assoc();
+                            $user_avatar = $product['avatar'];
                             echo '<img src="'.$user_avatar.'" alt="user avatar"
                             class="border rounded w-100 h-100 rounded-circle" style="object-fit: cover">';
                         } else {

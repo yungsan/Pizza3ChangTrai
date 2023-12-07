@@ -9,14 +9,14 @@ $sql = "SELECT *
             username = '$username' AND 
             password = '$password'";
 
-$users = $connect->query($sql);
+$products = $connect->query($sql);
 
-if ($users->num_rows == 0) {
+if ($products->num_rows == 0) {
     echo "dang nhap that bai";
 } else {
-    $user = $users->fetch_assoc();
+    $product = $products->fetch_assoc();
     session_start();
-    $_SESSION["user"] = $user;
+    $_SESSION["user"] = $product;
     $page = 'user';
     if ($_SESSION['user']['role'] == 'admin'){
         $page = 'admin';

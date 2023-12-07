@@ -1,8 +1,8 @@
 <?php
 require_once('../../config/database.php');
 $sql = "SELECT * FROM categories";
-$users = $connect->query($sql);
-$total = $users->num_rows;
+$products = $connect->query($sql);
+$total = $products->num_rows;
 
 $url = basename($_SERVER['REQUEST_URI']);
 ?>
@@ -62,27 +62,27 @@ $url = basename($_SERVER['REQUEST_URI']);
             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                 <?php
                 $i = 1;
-                while ($user = $users->fetch_assoc()) {
-                    $c_id = $user['id'];
+                while ($product = $products->fetch_assoc()) {
+                    $c_id = $product['id'];
                     $sql = "SELECT COUNT(*) as count FROM products WHERE category_id = $c_id";
                     $product_count = ($connect->query($sql))->fetch_assoc();
 
                     echo '<tr class="text-gray-700 dark:text-gray-400 product_item">
                             <td class="px-4 py-3 text-sm product_id">
-                                ' . $user['id'] . '
+                                ' . $product['id'] . '
                             </td>
                             <td class="px-4 py-3">
                                 <div class="flex items-center text-sm">
                                     <!-- Avatar with inset shadow -->
                                     <div class="relative hidden w-10 h-10 mr-3 rounded-full md:block">
                                         <img class="object-cover w-full h-full rounded-full"
-                                            src="pages/categories/'.$user['thumbnail'].'"
+                                            src="pages/categories/'.$product['thumbnail'].'"
                                             alt="" loading="lazy" />
                                         <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
                                         </div>
                                     </div>
                                     <div>
-                                        <p class="font-semibold">' . $user['category_name'] . '</p>
+                                        <p class="font-semibold">' . $product['category_name'] . '</p>
                                     </div>
                                 </div>
                             </td>
@@ -92,13 +92,13 @@ $url = basename($_SERVER['REQUEST_URI']);
                             <td class="px-4 py-3 text-xs">
                                 <span
                                     class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                    ' . $user['created_at'] . '
+                                    ' . $product['created_at'] . '
                                 </span>
                             </td>
                             <td class="px-4 py-3 text-xs">
                                 <span
                                     class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                    ' . $user['updated_at'] . '
+                                    ' . $product['updated_at'] . '
                                 </span>
                             </td>
                             <td class="px-4 py-3 text-xs text-right">

@@ -43,16 +43,20 @@ else if ($page === 'admin') {
 else if ($page === 'cart') {
     include 'pages/cart/index.php';
 }
+else if ($page === 'checkout') {
+    if (isset($_SESSION['user'])){
+        include 'pages/cart/checkout.php';
+    }
+    else {
+        header("Location: ./?page=login");
+        exit();
+    }
+}
 else if ($page === 'contact') {
     include 'pages/contact/contact.php';
 }
 else {
-    if (isset($_GET['keyword'])) {
-        echo 'hihihih';
-    }
-    else {
-        include 'pages/404.html';
-    }
+    include 'pages/404.html';
 }
 
 include("includes/footer.php");

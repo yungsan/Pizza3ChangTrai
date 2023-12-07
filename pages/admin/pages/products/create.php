@@ -25,9 +25,9 @@
                     <?php
                     require_once('../../config/database.php');
                     $sql = "SELECT * FROM categories";
-                    $users = $connect->query($sql);
-                    while ($user = $users->fetch_assoc()) {
-                        echo '<option value="' . $user['id'] . '">' . $user['category_name'] . '</option>';
+                    $products = $connect->query($sql);
+                    while ($product = $products->fetch_assoc()) {
+                        echo '<option value="' . $product['id'] . '">' . $product['category_name'] . '</option>';
                     }
                     ?>
                 </select>

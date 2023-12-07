@@ -1,5 +1,5 @@
 <?php
-$user = $_SESSION['user'];
+$product = $_SESSION['user'];
 ?>
 <section>
     <div class="container-fluid page-header mb-5" style="background: none">
@@ -14,7 +14,7 @@ $user = $_SESSION['user'];
                             clip-rule="evenodd" />
                     </svg>
 
-                    <img src="<?php echo $user['avatar']; ?>" alt="user avatar"
+                    <img src="<?php echo $product['avatar']; ?>" alt="user avatar"
                         class=' border rounded w-100 h-100 rounded-circler' style="object-fit: cover" id="avatar">
                     <input type="file" name="avatar" id="inputFile" hidden>
                     <div class="bg-danger rounded text-white position-absolute end-0 top-0 m-2 py-1 px-3 d-none"
@@ -36,28 +36,28 @@ $user = $_SESSION['user'];
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="username" class="form-label">Tên tài khoản</label>
-                        <input type="text" class="form-control" id="username" value='<?php echo $user["username"] ?>'
+                        <input type="text" class="form-control" id="username" value='<?php echo $product["username"] ?>'
                             readonly disabled>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="fullname" class="form-label">Họ tên</label>
-                        <input type="text" class="form-control" id="fullname" value='<?php echo $user["fullname"] ?>' readonly
+                        <input type="text" class="form-control" id="fullname" value='<?php echo $product["fullname"] ?>' readonly
                             disabled>
                     </div>
                     <div class="col-md-12 mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" value='<?php echo $user["email"] ?>' readonly
+                        <input type="email" class="form-control" id="email" value='<?php echo $product["email"] ?>' readonly
                             disabled>
                     </div>
                     <div class="col-md-12 mb-3">
                         <label for="sdt" class="form-label">Số điện thoại</label>
-                        <input type="text" class="form-control" id="sdt" value="<?php echo $user["sdt"] ?>" readonly
+                        <input type="text" class="form-control" id="sdt" value="<?php echo $product["sdt"] ?>" readonly
                             disabled>
                     </div>
                     <div class="col-md-12 mb-3">
                         <label for="address" class="form-label">Địa chỉ</label>
                         <textarea class="form-control" placeholder="Your address here" id="address" rows="10" disabled
-                            readonly><?php echo $user["address"] ?></textarea>
+                            readonly><?php echo $product["address"] ?></textarea>
                     </div>
                 </div>
             </div>

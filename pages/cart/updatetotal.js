@@ -6,7 +6,7 @@ const total = document.querySelector('.total');
 const p_total = document.querySelectorAll('.p_total');
 const delete_buttons = document.querySelectorAll('.delete_button');
 const cart_items = document.querySelectorAll('.cart_item');
-
+let _total = 0;
 setTotal();
 
 delete_buttons.forEach((btn, index) => {
@@ -45,5 +45,6 @@ function setTotal(){
     p_total.forEach((item) => {
         newSum += Number(item.innerHTML);
     });
+    _total = newSum;
     total.innerHTML = newSum.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
 }

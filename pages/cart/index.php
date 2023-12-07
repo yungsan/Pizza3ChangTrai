@@ -11,55 +11,13 @@
                             <span class="total h4 text-secondary fw-bold">0</span>
                         </div>
                         <div class="col-md-6 text-end">
-                            <button type="button" class="btn btn-primary m-2">
+                            <a href='?page=checkout' type="button" class="btn btn-primary m-2">
                                 Tiến hành đặt hàng
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="row py-5" id='cart_list'>
-                    <!-- <div class="col-md-6 d-flex justify-content-between border p-4 shadow-sm rounded-3">
-                        <div class="p-0 m-0" style='height: 100px; width: 100px'>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Pizza_Vi%E1%BB%87t_Nam_%C4%91%E1%BA%BF_d%C3%A0y%2C_x%C3%BAc_x%C3%ADch_%28SNaT_2018%29_%287%29.jpg"
-                                alt="image" class='w-100 h-100 object-fit-cover rounded-circle'>
-                        </div>
-                        <div class="px-4">
-                            <h4 class='fw-bold'>
-                                PIZZA HẢI SẢN
-                            </h4>
-                            <button class='btn btn-secondary rounded-pill'>
-                                <label>Size: </label>
-                                <label>S</label>
-                            </button>
-                            <button class='btn btn-secondary rounded-pill'>
-                                <label>Đơn giá: </label>
-                                <label>499.000</label>
-                            </button>
-                            <div class="my-3 d-flex flex-wrap">
-                                <label class='d-block mb-1 fw-bold w-100'>Số lượng</label>
-                                <button style='width: 40px; height: 40px' class='btn border' id='down'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
-                                    </svg>
-                                </button>
-                                <input type="text" id='so_luong' value="1"
-                                    class='form-control text-center border-end-0 border-start-0 border-top-0 rounded-0 border-primary'
-                                    style="width: 15%" readonly>
-                                <button style='width: 40px; height: 40px' class='btn border' id='up'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M12 4.5v15m7.5-7.5h-15" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                        <button class='btn btn-outline-primary text-black' style='height: fit-content'>
-                            <i class="fas fa-trash fa-lg"></i>
-                        </button>
-                    </div> -->
-                </div>
+                <div class="row py-5" id='cart_list'></div>
             </div>
         </div>
     </div>
