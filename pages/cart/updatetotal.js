@@ -24,6 +24,9 @@ increase_buttons.forEach((btn, index) => {
         const currentValue = Number(amount_input[index].value);
         amount_input[index].value = currentValue + 1;
         p_total[index].innerHTML = Number(price[index].innerHTML) * Number(amount_input[index].value);
+        const cart = JSON.parse(localStorage.getItem('cart'));
+        cart[index].amount = Number(amount_input[index].value);
+        localStorage.setItem('cart', JSON.stringify(cart));
         setTotal();
     });
 });
@@ -36,6 +39,9 @@ decrease_buttons.forEach((btn, index) => {
         }
         amount_input[index].value = currentValue - 1;
         p_total[index].innerHTML = Number(price[index].innerHTML) * Number(amount_input[index].value);
+        const cart = JSON.parse(localStorage.getItem('cart'));
+        cart[index].amount = Number(amount_input[index].value);
+        localStorage.setItem('cart', JSON.stringify(cart));
         setTotal();
     });
 });
