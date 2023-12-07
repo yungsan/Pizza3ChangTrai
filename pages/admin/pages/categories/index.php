@@ -1,8 +1,8 @@
 <?php
 require_once('../../config/database.php');
 $sql = "SELECT * FROM categories";
-$products = $connect->query($sql);
-$total = $products->num_rows;
+$users = $connect->query($sql);
+$total = $users->num_rows;
 
 $url = basename($_SERVER['REQUEST_URI']);
 ?>
@@ -62,43 +62,47 @@ $url = basename($_SERVER['REQUEST_URI']);
             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                 <?php
                 $i = 1;
-                while ($product = $products->fetch_assoc()) {
-                    echo '<tr class="text-gray-700 dark:text-gray-400">
-                            <td class="px-4 py-3 text-sm">
-                                ' . $i . '
+                while ($user = $users->fetch_assoc()) {
+                    $c_id = $user['id'];
+                    $sql = "SELECT COUNT(*) as count FROM products WHERE category_id = $c_id";
+                    $product_count = ($connect->query($sql))->fetch_assoc();
+
+                    echo '<tr class="text-gray-700 dark:text-gray-400 product_item">
+                            <td class="px-4 py-3 text-sm product_id">
+                                ' . $user['id'] . '
                             </td>
                             <td class="px-4 py-3">
                                 <div class="flex items-center text-sm">
                                     <!-- Avatar with inset shadow -->
                                     <div class="relative hidden w-10 h-10 mr-3 rounded-full md:block">
                                         <img class="object-cover w-full h-full rounded-full"
-                                            src="pages/categories/'.$product['thumbnail'].'"
+                                            src="pages/categories/'.$user['thumbnail'].'"
                                             alt="" loading="lazy" />
                                         <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
                                         </div>
                                     </div>
                                     <div>
-                                        <p class="font-semibold">' . $product['category_name'] . '</p>
+                                        <p class="font-semibold">' . $user['category_name'] . '</p>
                                     </div>
                                 </div>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                0
+                                '.$product_count['count'].'
                             </td>
                             <td class="px-4 py-3 text-xs">
                                 <span
                                     class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                    ' . $product['created_at'] . '
+                                    ' . $user['created_at'] . '
                                 </span>
                             </td>
                             <td class="px-4 py-3 text-xs">
                                 <span
                                     class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                    ' . $product['updated_at'] . '
+                                    ' . $user['updated_at'] . '
                                 </span>
                             </td>
                             <td class="px-4 py-3 text-xs text-right">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-red-700  rounded-full dark:bg-red-700 dark:text-red-100 cursor-pointer">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-red-700  rounded-full dark:bg-red-700 dark:text-red-100 cursor-pointer delete_button">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9.75L14.25 12m0 0l2.25 2.25M14.25 12l2.25-2.25M14.25 12L12 14.25m-2.58 4.92l-6.375-6.375a1.125 1.125 0 010-1.59L9.42 4.83c.211-.211.498-.33.796-.33H19.5a2.25 2.25 0 012.25 2.25v10.5a2.25 2.25 0 01-2.25 2.25h-9.284c-.298 0-.585-.119-.796-.33z" />
                                 </svg>
                             </td>
@@ -178,3 +182,33 @@ $url = basename($_SERVER['REQUEST_URI']);
         </span>
     </div>
 </div>
+
+<script>
+    const delete_buttons =document.querySelectorAll('.delete_button');
+    const product_items = document.querySelectorAll('.product_item');
+    const product_ids = document.querySelectorAll('.product_id');
+    delete_buttons.forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+            product_items[index].remove();
+            delete_product(Number(product_ids[index].innerText));
+        });
+    });
+
+    function delete_product(id){
+        const data = {
+            'product_id': id
+        };
+        $.ajax({
+            url: "pages/categories/handleDelete.php",
+            type: 'POST',
+            data: data,
+            success: function (response) {
+                console.log(response);
+                alert(response);
+            },
+            error: function (error) {
+                alert(error);
+            }
+        });
+    }
+</script>

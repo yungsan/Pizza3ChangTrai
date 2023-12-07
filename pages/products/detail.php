@@ -3,11 +3,11 @@ $id = $_GET['id'];
 include_once('config/database.php');
 
 $sql = "SELECT * FROM products WHERE id = $id";
-$product = ($connect->query($sql))->fetch_assoc();
-$images = json_decode($product['images'], true);
-$c_id = $product['category_id'];
+$user = ($connect->query($sql))->fetch_assoc();
+$images = json_decode($user['images'], true);
+$c_id = $user['category_id'];
 $sql = "SELECT category_name FROM categories WHERE categories.id = $c_id";
-$category = ($connect->query($sql))->fetch_assoc();
+$user = ($connect->query($sql))->fetch_assoc();
 ?>
 <style>
     .activeSize {
@@ -25,7 +25,7 @@ $category = ($connect->query($sql))->fetch_assoc();
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-12" style='width: 100%; height: 500px;'>
-                            <img src="pages/admin/pages/products/<?php echo $product['thumbnail']; ?>" alt="thumbnail"
+                            <img src="pages/admin/pages/products/<?php echo $user['thumbnail']; ?>" alt="thumbnail"
                                 class='img-thumbnail border-0 rounded-4 w-100 h-100' style="object-fit: cover;">
                         </div>
                         <div class="col-md-12 position-relative mt-1 w-100" style='overflow-x: scroll'
@@ -44,28 +44,28 @@ $category = ($connect->query($sql))->fetch_assoc();
                 </div>
                 <div class="col-md-6 px-5">
                     <div class="mb-3">
-                        <input type="text" id="pid" hidden value="<?php echo $product['id']; ?>">
+                        <input type="text" id="pid" hidden value="<?php echo $user['id']; ?>">
                     </div>
                     <div class="mb-3">
                         <span class='text-secondary fw-bold'>
-                            <?php echo $category['category_name']; ?>
+                            <?php echo $user['category_name']; ?>
                         </span>
                     </div>
                     <div class="mb-3">
                         <h3 class='text-uppercase' id="product_name">
-                            <?php echo $product['product_name']; ?>
+                            <?php echo $user['product_name']; ?>
                         </h3>
                     </div>
                     <div class="mb-3">
                         <p class='text-muted lh-lg'>
-                            <?php echo $product['description']; ?>
+                            <?php echo $user['description']; ?>
                         </p>
                     </div>
                     <div class="mb-3">
-                        <span class='text-secondary fw-bold h3'>
-                            <?php echo number_format($product['price'], 0, '.', '.'); ?> đ
+                        <span class='text-secondary fw-bold h3' id='_product_price'>
+                            <?php echo number_format($user['price'], 0, '.', '.'); ?> đ
                         </span>
-                        <input type="number" id='product_price' hidden value="<?php echo $product['price'] ?>" />
+                        <input type="number" id='product_price' hidden value="<?php echo $user['price'] ?>" />
                         <span class='text-muted text-decoration-line-through'>
                             499.000 đ
                         </span>

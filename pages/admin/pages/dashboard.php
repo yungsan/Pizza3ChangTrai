@@ -1,8 +1,8 @@
 <?php
 require_once('../../config/database.php');
 $sql = "SELECT * FROM users WHERE role = 'user'";
-$products = $connect->query($sql);
-$total = $products->num_rows;
+$users = $connect->query($sql);
+$total = $users->num_rows;
 ?>
 
 
@@ -99,43 +99,43 @@ $total = $products->num_rows;
             </thead>
             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                 <?php
-                while ($product = $products->fetch_assoc()) {
+                while ($user = $users->fetch_assoc()) {
                     echo '<tr class="text-gray-700 dark:text-gray-400">
                             <td class="px-4 py-3 text-sm">
-                                ' . ($product['id'] - 1) . '
+                                ' . ($user['id'] - 1) . '
                             </td>
                             <td class="px-4 py-3">
                                 <div class="flex items-center text-sm">
                                     <!-- Avatar with inset shadow -->
                                     <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
                                         <img class="object-cover w-full h-full rounded-full"
-                                            src="../../' . $product['avatar'] . '"
+                                            src="../../' . $user['avatar'] . '"
                                             alt="" loading="lazy" />
                                         <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
                                         </div>
                                     </div>
                                     <div>
-                                        <p class="font-semibold">' . $product['fullname'] . '</p>
+                                        <p class="font-semibold">' . $user['fullname'] . '</p>
                                         <p class="text-xs text-gray-600 dark:text-gray-400">'
-                        . $product['email'] .
+                        . $user['email'] .
                         '</p>
                                     </div>
                                 </div>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                ' . $product['username'] . '
+                                ' . $user['username'] . '
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                ' . $product['sdt'] . '
+                                ' . $user['sdt'] . '
                             </td>
                             <td class="px-4 py-3 text-xs">
                                 <span
                                     class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                    ' . $product['joined'] . '
+                                    ' . $user['joined'] . '
                                 </span>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                ' . $product['address'] . '
+                                ' . $user['address'] . '
                             </td>
                         </tr>';
                 }
