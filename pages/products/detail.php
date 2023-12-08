@@ -103,7 +103,7 @@ $category = ($connect->query($sql))->fetch_assoc();
                                 hàng</button>
                         </div>
                         <div class="col-md-6">
-                            <button class='btn btn-secondary p-3 rounded-pill w-100'>Mua ngay</button>
+                            <button id="buy_now" class='btn btn-secondary p-3 rounded-pill w-100'>Mua ngay</button>
                         </div>
                     </div>
                 </div>
@@ -187,6 +187,38 @@ $category = ($connect->query($sql))->fetch_assoc();
         cart_values.push(data);
         localStorage.setItem('cart', JSON.stringify(cart_values));
         cart_count.innerHTML = cart_values.length;
+    }
+
+    const buy_now =document.querySelector('#buy_now');
+    buy_now.onclick = () => {
+        const product_id = Number(document.querySelector('#pid').value);
+        const product_name = document.querySelector('#product_name').innerText;
+        let product_price = Number(document.querySelector('#product_price').value);
+        const amount = Number(amount_input.value);
+        const size = document.querySelector('.activeSize').innerHTML;
+        const thumbnail = document.querySelector('img[alt="thumbnail"]').src;
+
+        if (size == 'M'){
+            product_price *= 1.1;
+        }
+        else if (size == 'L'){
+            product_price *= 1.2;
+        }
+
+        const data = {
+            product_id,
+            product_name,
+            product_price,
+            amount,
+            size,
+            thumbnail
+        };
+
+        const cart_values = JSON.parse(localStorage.getItem('cart'));
+        cart_values.push(data);
+        localStorage.setItem('cart', JSON.stringify(cart_values));
+        cart_count.innerHTML = cart_values.length;
+        window.location.href = "./?page=checkout";
     }
 
     function xScroll(element) {
