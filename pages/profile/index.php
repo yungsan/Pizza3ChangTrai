@@ -1,5 +1,5 @@
 <?php
-$product = $_SESSION['user'];
+$row = $_SESSION['user'];
 ?>
 <section>
     <div class="container-fluid page-header mb-5" style="background: none">
@@ -14,7 +14,7 @@ $product = $_SESSION['user'];
                             clip-rule="evenodd" />
                     </svg>
 
-                    <img src="<?php echo $product['avatar']; ?>" alt="user avatar"
+                    <img src="<?php echo $row['avatar']; ?>" alt="user avatar"
                         class=' border rounded w-100 h-100 rounded-circler' style="object-fit: cover" id="avatar">
                     <input type="file" name="avatar" id="inputFile" hidden>
                     <div class="bg-danger rounded text-white position-absolute end-0 top-0 m-2 py-1 px-3 d-none"
@@ -36,28 +36,28 @@ $product = $_SESSION['user'];
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="username" class="form-label">Tên tài khoản</label>
-                        <input type="text" class="form-control" id="username" value='<?php echo $product["username"] ?>'
+                        <input type="text" class="form-control" id="username" value='<?php echo $row["username"] ?>'
                             readonly disabled>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="fullname" class="form-label">Họ tên</label>
-                        <input type="text" class="form-control" id="fullname" value='<?php echo $product["fullname"] ?>' readonly
+                        <input type="text" class="form-control" id="fullname" value='<?php echo $row["fullname"] ?>' readonly
                             disabled>
                     </div>
                     <div class="col-md-12 mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" value='<?php echo $product["email"] ?>' readonly
+                        <input type="email" class="form-control" id="email" value='<?php echo $row["email"] ?>' readonly
                             disabled>
                     </div>
                     <div class="col-md-12 mb-3">
                         <label for="sdt" class="form-label">Số điện thoại</label>
-                        <input type="text" class="form-control" id="sdt" value="<?php echo $product["sdt"] ?>" readonly
+                        <input type="text" class="form-control" id="sdt" value="<?php echo $row["sdt"] ?>" readonly
                             disabled>
                     </div>
                     <div class="col-md-12 mb-3">
                         <label for="address" class="form-label">Địa chỉ</label>
                         <textarea class="form-control" placeholder="Your address here" id="address" rows="10" disabled
-                            readonly><?php echo $product["address"] ?></textarea>
+                            readonly><?php echo $row["address"] ?></textarea>
                     </div>
                 </div>
             </div>
@@ -65,10 +65,15 @@ $product = $_SESSION['user'];
             <div class="col-md-3">
                 <ul class="list-group">
                     <li class="list-group-item w-100 py-3">
-                        <a href="#" class='text-primary w-100 nav-link fw-bold'>Thông tin tài khoản</a>
+                        <a href="?page=user" class='text-primary w-100 nav-link fw-bold'>
+                            Thông tin tài khoản
+                        </a>
                     </li>
-                    <li class="list-group-item w-100 py-3">Đơn mua</li>
-                    <li class="list-group-item w-100 py-3">Lịch sử mua hàng</li>
+                    <li class="list-group-item w-100 py-3">
+                        <a href="?page=user&nav=purchaseHistory" class='text-black'>
+                            Lịch sử mua hàng
+                        </a>
+                    </li>
                     <li class="list-group-item w-100 py-3">Đã thích</li>
                     <li class="list-group-item w-100 py-3">Voucher</li>
                     <li class="list-group-item w-100 py-3">Đánh giá của tôi</li>

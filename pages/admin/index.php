@@ -18,6 +18,9 @@ else if ($page === 'create_product'){
 else if ($page === 'categories'){
     include('pages/categories/index.php');
 }
+else if ($page === 'order'){
+    include('pages/order/index.php');
+}
 else if ($page === 'create_category'){
     include('pages/categories/create.php');
 }

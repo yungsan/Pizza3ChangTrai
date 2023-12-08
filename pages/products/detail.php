@@ -3,9 +3,9 @@ $id = $_GET['id'];
 include_once('config/database.php');
 
 $sql = "SELECT * FROM products WHERE id = $id";
-$product = ($connect->query($sql))->fetch_assoc();
-$images = json_decode($product['images'], true);
-$c_id = $product['category_id'];
+$row = ($connect->query($sql))->fetch_assoc();
+$images = json_decode($row['images'], true);
+$c_id = $row['category_id'];
 $sql = "SELECT category_name FROM categories WHERE categories.id = $c_id";
 $category = ($connect->query($sql))->fetch_assoc();
 ?>
@@ -25,7 +25,7 @@ $category = ($connect->query($sql))->fetch_assoc();
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-12" style='width: 100%; height: 500px;'>
-                            <img src="pages/admin/pages/products/<?php echo $product['thumbnail']; ?>" alt="thumbnail"
+                            <img src="pages/admin/pages/products/<?php echo $row['thumbnail']; ?>" alt="thumbnail"
                                 class='img-thumbnail border-0 rounded-4 w-100 h-100' style="object-fit: cover;">
                         </div>
                         <div class="col-md-12 position-relative mt-1 w-100" style='overflow-x: scroll'
@@ -44,7 +44,7 @@ $category = ($connect->query($sql))->fetch_assoc();
                 </div>
                 <div class="col-md-6 px-5">
                     <div class="mb-3">
-                        <input type="text" id="pid" hidden value="<?php echo $product['id']; ?>">
+                        <input type="text" id="pid" hidden value="<?php echo $row['id']; ?>">
                     </div>
                     <div class="mb-3">
                         <span class='text-secondary fw-bold'>
@@ -53,19 +53,19 @@ $category = ($connect->query($sql))->fetch_assoc();
                     </div>
                     <div class="mb-3">
                         <h3 class='text-uppercase' id="product_name">
-                            <?php echo $product['product_name']; ?>
+                            <?php echo $row['product_name']; ?>
                         </h3>
                     </div>
                     <div class="mb-3">
                         <p class='text-muted lh-lg'>
-                            <?php echo $product['description']; ?>
+                            <?php echo $row['description']; ?>
                         </p>
                     </div>
                     <div class="mb-3">
                         <span class='text-secondary fw-bold h3' id='_product_price'>
-                            <?php echo number_format($product['price'], 0, '.', '.'); ?> đ
+                            <?php echo number_format($row['price'], 0, '.', '.'); ?> VND
                         </span>
-                        <input type="number" id='product_price' hidden value="<?php echo $product['price'] ?>" />
+                        <input type="number" id='product_price' hidden value="<?php echo $row['price'] ?>" />
                         <span class='text-muted text-decoration-line-through'>
                             499.000 đ
                         </span>
@@ -130,6 +130,15 @@ $category = ($connect->query($sql))->fetch_assoc();
                 document.querySelector('.activeSize').classList.remove('activeSize');
                 btn.classList.add('activeSize');
             }
+            let multiple = 1;
+            const size = btn.innerText;
+            if (size == 'M') {
+                multiple = 1.1;
+            }
+            else if (size == 'L') {
+                multiple = 1.2;
+            }
+            updatePrice(multiple);
         });
     });
 
@@ -153,17 +162,24 @@ $category = ($connect->query($sql))->fetch_assoc();
     addToCart_button.onclick = () => {
         const product_id = Number(document.querySelector('#pid').value);
         const product_name = document.querySelector('#product_name').innerText;
-        const product_price = Number(document.querySelector('#product_price').value);
+        let product_price = Number(document.querySelector('#product_price').value);
         const amount = Number(amount_input.value);
         const size = document.querySelector('.activeSize').innerHTML;
         const thumbnail = document.querySelector('img[alt="thumbnail"]').src;
+
+        if (size == 'M'){
+            product_price *= 1.1;
+        }
+        else if (size == 'L'){
+            product_price *= 1.2;
+        }
 
         const data = {
             product_id,
             product_name,
             product_price,
             amount,
-            size,   
+            size,
             thumbnail
         };
 
@@ -181,5 +197,11 @@ $category = ($connect->query($sql))->fetch_assoc();
                 left: event.deltaY < 0 ? -30 : 30,
             });
         });
+    }
+
+    function updatePrice(multiple) {
+        const _product_price = document.querySelector('#_product_price');
+        const product_price = document.querySelector('#product_price');
+        _product_price.innerText = (Number(product_price.value) * multiple).toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
     }
 </script>

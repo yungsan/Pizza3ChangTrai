@@ -1,8 +1,9 @@
 <?php
 require_once('../../config/database.php');
-$sql = "SELECT * FROM users WHERE role = 'user' ORDER BY id DESC";
-$products = $connect->query($sql);
-$total = $products->num_rows;
+$sql = "SELECT bills.id, fullname, email, total, created_at FROM bills, users WHERE bills.user_id = users.id ORDER BY id DESC";
+$order = $connect->query($sql);
+$total = $order->num_rows;
+
 ?>
 <div class="w-full overflow-hidden rounded-lg shadow-xs">
     <div class="w-full overflow-x-auto">
@@ -10,54 +11,42 @@ $total = $products->num_rows;
             <thead>
                 <tr
                     class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                    <th class="px-4 py-3">#</th>
+                    <th class="px-4 py-3">Mã hoá đơn</th>
                     <th class="px-4 py-3">Khách hàng</th>
-                    <th class="px-4 py-3">Username</th>
-                    <th class="px-4 py-3">Số điện thoại</th>
-                    <th class="px-4 py-3">Ngày tham gia</th>
-                    <th class="px-4 py-3">Địa chỉ</th>
+                    <th class="px-4 py-3">Tổng tiền</th>
+                    <th class="px-4 py-3">Ngày lập hoá đon</th>
+                    <th class="px-4 py-3">Trạng thái</th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                 <?php
                 $i = 1;
-                while ($row = $products->fetch_assoc()) {
+                while ($row = $order->fetch_assoc()) {
                     echo '<tr class="text-gray-700 dark:text-gray-400">
-                            <td class="px-4 py-3 text-sm">
+                            <td class="px-4 py-3 text-sm font-bold">
                                 ' . $row['id'] . '
                             </td>
-                            <td class="px-4 py-3">
-                                <div class="flex items-center text-sm">
-                                    <!-- Avatar with inset shadow -->
-                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                        <img class="object-cover w-full h-full rounded-full"
-                                            src="../../' . $row['avatar'] . '"
-                                            alt="" loading="lazy" />
-                                        <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold">' . $row['fullname'] . '</p>
-                                        <p class="text-xs text-gray-600 dark:text-gray-400">'
-                                            . $row['email'] .
-                                        '</p>
-                                    </div>
+                            <td class="px-4 py-3 text-sm">
+                                <div>
+                                    <p class="font-semibold">' . $row['fullname'] . '</p>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">'
+                                        . $row['email'] .
+                                    '</p>
                                 </div>
                             </td>
-                            <td class="px-4 py-3 text-sm">
-                                ' . $row['username'] . '
-                            </td>
-                            <td class="px-4 py-3 text-sm">
-                                ' . $row['sdt'] . '
+                            <td class="px-4 py-3 text-sm text-primary">
+                                ' . number_format($row['total'], 0, '.', '.') . '
                             </td>
                             <td class="px-4 py-3 text-xs">
                                 <span
-                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                    ' . $row['joined'] . '
+                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-primary-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                    ' . $row['created_at'] . '
                                 </span>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                ' . $row['address'] . '
+                                <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                    Giao hàng thành công
+                                </span>
                             </td>
                         </tr>';
                 }

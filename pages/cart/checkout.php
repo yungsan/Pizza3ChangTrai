@@ -29,7 +29,7 @@
                             <div class="mb-3">
                                 <label for="address" class='form-label fw-bold'>Địa chỉ</label>
                                 <input type="text" name="address" id="address" class='form-control p-3'
-                                placeholder="Address" value="<?php echo $_SESSION['user']['address'] ?>">
+                                    placeholder="Address" value="<?php echo $_SESSION['user']['address'] ?>">
                             </div>
                             <div class="mb-1">
                                 <label for="sdt" class='form-label fw-bold'>Phương thức thanh toán</label>
@@ -48,8 +48,9 @@
                                     Chuyển khoản
                                 </label>
                             </div>
+                            <input type="text" id="uid" value="<?php echo $_SESSION['user']['id'] ?>" hidden>
                             <div class="text-end">
-                                <button class='btn btn-primary w-50 p-2'>Đặt hàng</button>
+                                <button class='btn btn-primary w-50 p-2' id='order_button'>Đặt hàng</button>
                             </div>
                         </div>
                     </form>
@@ -89,18 +90,46 @@
 
     </script>
     <script>
-        const radio_buttons =document.querySelectorAll('.form-check input');
+        const radio_buttons = document.querySelectorAll('.form-check input');
         radio_buttons.forEach(btn => {
             btn.addEventListener('change', () => {
                 let shipping = 0;
                 if (btn.value == 1) {
                     shipping += 25000;
                 }
-                total.innerHTML = (_total+shipping).toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+                total.innerHTML = (_total + shipping).toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
             });
         });
     </script>
+    <script>
+        const order_button = document.querySelector('#order_button');
+        order_button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const user_id = document.querySelector('#uid').value;
+            const products = JSON.parse(localStorage.getItem('cart'));
+            const data = {
+                user_id,
+                products
+            };
+            $.ajax({
+                url: "pages/cart/handleCheckout.php",
+                type: 'POST',
+                data: data,
+                success: function (response) {
+                    if (response == "Đặt hàng thành công!") {
+                        localStorage.setItem('cart', '[]');
+                        cart_count.innerText = 0;
+                        window.location.href = "?page=user&nav=purchaseHistory";
+                    }
+                    alert(response);
+                },
+                error: function (error) {
+                    alert(error);
+                }
+            });
+        });
+
+    </script>
     <script src="pages/cart/updatetotal.js"></script>
-    <script src="pages/cart/provinces_api.js"></script>
 
 </section>

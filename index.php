@@ -33,7 +33,18 @@ else if ($page === 'register') {
 }
 // user
 else if ($page === 'user') {
-    include 'pages/profile/index.php';
+    if (isset($_GET['nav'])){
+        $location = $_GET['nav'];
+        if ($location === 'purchaseHistory'){
+            include 'pages/profile/purchaseHistory.php';
+        }
+        else if ($location === 'detailBill'){
+            include 'pages/profile/detailBill.php';
+        }
+    }
+    else{
+        include 'pages/profile/index.php';
+    }
 } 
 // admin
 else if ($page === 'admin') {

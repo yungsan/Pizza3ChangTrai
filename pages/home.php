@@ -110,19 +110,19 @@ if(!$products) {
                 <div class="row g-4">
                     <!-- products -->
                     <?php
-                    while($product = $products->fetch_assoc()) {
+                    while($row = $products->fetch_assoc()) {
                         echo '
                                 <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                                     <div class="product-item" style="height: ">
                                         <div class="position-relative bg-light overflow-hidden" style="width: 100%; height: 250px">
-                                        <a href="?page=detail&id='.$product['id'].'">
-                                            <img class="img-fluid w-100 h-100" src="pages/admin/pages/products/'.$product['thumbnail'].'" alt="thumbnail" style="object-fit: cover">
+                                        <a href="?page=detail&id='.$row['id'].'">
+                                            <img class="img-fluid w-100 h-100" src="pages/admin/pages/products/'.$row['thumbnail'].'" alt="thumbnail" style="object-fit: cover">
                                             <div class="bg-secondary rounded text-white position-absolute end-0 top-0 m-3 py-1 px-3">New</div>
                                         </a>
                                         </div>
                                         <div class="text-center p-4">
-                                            <a class="d-block text-uppercase h5 mb-2 text-black text" href="#">'.$product['product_name'].'</a>
-                                            <span class="text-secondary me-1 fw-bold">'.number_format($product['price'], 0, '.', '.').' đ</span>
+                                            <a class="d-block text-uppercase h5 mb-2 text-black text" href="#">'.$row['product_name'].'</a>
+                                            <span class="text-secondary me-1 fw-bold">'.number_format($row['price'], 0, '.', '.').' đ</span>
                                             <span class="text-body text-decoration-line-through">$29.00</span>
                                         </div>
                                         <div class="d-flex border-top">
