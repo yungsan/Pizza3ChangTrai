@@ -1,7 +1,7 @@
 <?php
 require_once("../config/database.php");
 $username = $_POST["username"];
-$password = $_POST["password"];
+$password = md5($_POST["password"]);
 
 $sql = "SELECT *
         FROM users 
