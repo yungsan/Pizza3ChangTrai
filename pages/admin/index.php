@@ -1,5 +1,10 @@
 <?php 
 session_start();
+$role = $_SESSION['user']['role'];
+if ($role != 'admin'){
+    header('Location: ../../?page=user');
+    exit();
+}
 include('../../includes/admin_header.php');
 $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
 

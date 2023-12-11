@@ -174,13 +174,16 @@ $category = ($connect->query($sql))->fetch_assoc();
             product_price *= 1.2;
         }
 
+        const total = product_price * amount;
+
         const data = {
             product_id,
             product_name,
             product_price,
             amount,
             size,
-            thumbnail
+            thumbnail,
+            total
         };
 
         const cart_values = JSON.parse(localStorage.getItem('cart'));
@@ -205,13 +208,16 @@ $category = ($connect->query($sql))->fetch_assoc();
             product_price *= 1.2;
         }
 
+        const total = product_price * amount;
+
         const data = {
             product_id,
             product_name,
             product_price,
             amount,
             size,
-            thumbnail
+            thumbnail,
+            total
         };
 
         const cart_values = JSON.parse(localStorage.getItem('cart'));

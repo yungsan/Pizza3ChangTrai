@@ -61,7 +61,7 @@
     <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
     <script>
         let CART = JSON.parse(localStorage.getItem('cart'));
-        console.log(CART);
+        const total = document.querySelector('.total');
         CART.forEach(item => {
             const cart_item = `<div class="col-md-12 border-bottom border-end p-4 mb-3 cart_item">
                         <span class='d-none p_total'>${item.product_price * item.amount}</span>
@@ -83,30 +83,14 @@
                                     </button>
                                     <button class='btn btn-secondary rounded-pill'>
                                         <label>Đơn giá: </label>
-                                        <label>${(item.product_price).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</label>
+                                        <label>${(item.product_price).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</label>
                                         <label class='d-none p_price'>${item.product_price}</label>
                                     </button>
                                     <div class="my-3 d-flex flex-wrap gap-1">
                                         <label class='d-block mb-1 fw-bold w-100'>Số lượng</label>
-                                        <button style='width: 40px; height: 40px' class='btn border down'>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
-                                            </svg>
-                                        </button>
                                         <input type="text" value="${item.amount}"
                                             class='form-control text-center border-end-0 border-start-0 border-top-0 rounded-0 border-primary so_luong'
                                             style="width: 15%" readonly>
-                                        <button style='width: 40px; height: 40px' class='btn border up'>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M12 4.5v15m7.5-7.5h-15" />
-                                            </svg>
-                                        </button>
-                                        <button class='btn btn-outline-primary text-danger delete_button' style='height: fit-content'>
-                                            <i class="fas fa-trash fa-lg"></i>
-                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -116,6 +100,10 @@
             cart_list.insertAdjacentHTML('beforeend', cart_item);
         });
 
+        const sum = CART.reduce((total, item) => {
+            return total + item.total;
+        }, 0)
+        total.innerHTML = sum.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
     </script>
     <script>
         const radio_buttons = document.querySelectorAll('.form-check input');
@@ -158,6 +146,5 @@
         });
 
     </script>
-    <script src="pages/cart/updatetotal.js"></script>
 
 </section>
