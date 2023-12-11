@@ -8,7 +8,7 @@ $product_category = $_POST["category_id"];
 $product_description = $_POST["description"];
 // thumbnail
 $temp_path_thumbnail = $_FILES['thumbnail']['tmp_name'];
-$new_path_thumbnail = './upload/thumbnails/'.time().'_'.$_FILES['thumbnail']['name'];
+$new_path_thumbnail = 'upload/thumbnails/'.time().'_'.$_FILES['thumbnail']['name'];
 move_uploaded_file($temp_path_thumbnail, $new_path_thumbnail);
 // images
 $length = count($_FILES['images']['name']);

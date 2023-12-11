@@ -2,6 +2,15 @@
 $title = "Dashboard";
 if (isset($_GET['page']))
     $title = ucfirst($_GET['page']);
+if ($title == 'Edit_product'){
+    $title = 'Edit Product';
+}
+else if ($title == 'Create_product'){
+    $title = 'Create Product';
+}
+else if ($title == 'Create_category'){
+    $title = 'Create Category';
+}
 ?>
 <!DOCTYPE html>
 <html x-data="data()" lang="en">

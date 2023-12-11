@@ -20,6 +20,9 @@ else if ($page === 'products'){
 else if ($page === 'create_product'){
     include('pages/products/create.php');
 }
+else if ($page === 'edit_product'){
+    include('pages/products/edit.php');
+}
 else if ($page === 'categories'){
     include('pages/categories/index.php');
 }
