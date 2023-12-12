@@ -20,7 +20,7 @@ $category = ($connect->query($sql))->fetch_assoc();
 <section class="container-fluid page-header mb-5 wow fadeIn bg-none" style="background: none; padding-top: 8rem"
     data-wow-delay="0.1s">
     <div class="row">
-        <div class="col-md-10 offset-md-1">
+        <div class="col-lg-10 offset-lg-1">
             <div class="row">
                 <div class="col-md-6">
                     <div class="row">
