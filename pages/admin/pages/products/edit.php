@@ -11,7 +11,8 @@ $result = ($connect->query($sql))->fetch_assoc();
             <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
                 Chỉnh sửa sản phẩm
             </h1>
-            <input type='text' id='user_id' value="<?php echo $_SESSION['user']['id']; ?>" hidden></input>
+            <input type='text' id='user_id' value="<?php echo $_SESSION['user']['id']; ?>" hidden />
+            <input type='text' id='product_id' value="<?php echo $id; ?>" hidden />
             <label class="block text-sm mb-5">
                 <span class="text-gray-700 dark:text-gray-400">Tên sản phẩm</span>
                 <input
@@ -65,12 +66,14 @@ $result = ($connect->query($sql))->fetch_assoc();
     });
 
     function sendData() {
+        const product_id = $("#product_id").val();
         const product_name = $("#product_name").val();
         const product_price = $("#product_price").val();
         const product_category = $("#product_category").val();
         const product_description = $("#product_description").val();
 
         const data = {
+            product_id,
             product_name,
             product_price,
             product_category,
