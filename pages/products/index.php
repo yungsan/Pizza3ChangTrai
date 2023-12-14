@@ -24,7 +24,7 @@ if(!$products) {
                 <div class="col-lg-4">
                     <div class="section-header text-start mb-5 wow fadeInUp" data-wow-delay="0.1s"
                         style="max-width: 500px;">
-                        <h1 class="display-5 mb-3">Sản phẩm</h1>
+                        <h1 class="display-5 mb-3">Sản phẩm tìm được</h1>
                     </div>
                 </div>
                 <div class="col-lg-8 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
@@ -65,7 +65,7 @@ if(!$products) {
                                         </div>
                                         <div class="d-flex border-top">
                                             <small class="w-100 text-center border-end py-2 text-primary">
-                                                <a class="text-body" href="?page=detail&id='.$row['id'].'"><i class="fa fa-eye me-2"></i>View detail</a>
+                                                <a class="text-body" href="?page=detail&id='.$row['id'].'"><i class="fa fa-eye me-2"></i>Xem chi tiết</a>
                                             </small>
                                         </div>
                                     </div>

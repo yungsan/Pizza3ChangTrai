@@ -63,6 +63,10 @@ else if ($page === 'checkout') {
         exit();
     }
 }
+// serach
+else if ($page === 'search'){
+    include 'pages/search/searchResult.php';
+}
 else if ($page === 'contact') {
     include 'pages/contact/contact.php';
 }

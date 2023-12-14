@@ -111,12 +111,15 @@
                     <a href="./?page=store" class="nav-item nav-link">Chi Nhánh</a>
                     <a href="./?page=contact" class="nav-item nav-link">Liên Hệ</a>
                     <a href="./?page=blog" class="nav-item nav-link">Blog</a>
-                    <div class="position-absolute top-50 start-0 py-2 d-none w-100" id="search_input">
-                        <a href="#" id="search_form" class="nav-item nav-link">
-                            <input type="text" class='w-75 p-3 form-control rounded-pill rounded-end' name='keyword' placeholder="Nhập tên món ăn">
-                        </a>
-                        <button class='btn btn-primary p-3 position-absolute top-50 end-0 translate-middle rounded-pill rounded-start' id='search_submit'>Tìm kiếm</button>
-                    </div>
+                    <form action="pages/search/handleSearch.php" method="GET" id='search_form' class='d-none'>
+                        <div class="position-absolute top-50 start-0 py-2 w-100">
+                            <input type="text" class='w-75 p-3 form-control rounded-pill rounded-end' autofocus name="keyword"
+                                placeholder="Nhập tên món ăn" id='searchInput'>
+                            <button
+                                class='btn btn-primary p-3 position-absolute top-50 end-0 translate-middle rounded-pill rounded-start'
+                                id='search_submit'>Tìm kiếm</button>
+                        </div>
+                    </form>
                 </div>
                 <div class="d-none d-lg-flex ms-2">
                     <span class="btn-sm-square bg-white rounded-circle ms-3" id="search_icon">
@@ -124,13 +127,13 @@
                     </span>
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="?page=login">
                         <?php
-                        if(isset($_SESSION['user'])) {
+                        if (isset($_SESSION['user'])) {
                             require_once('config/database.php');
                             $user_id = $_SESSION['user']['id'];
                             $products = $connect->query("SELECT * FROM users WHERE id='$user_id'");
                             $row = $products->fetch_assoc();
                             $user_avatar = $row['avatar'];
-                            echo '<img src="'.$user_avatar.'" alt="user avatar"
+                            echo '<img src="' . $user_avatar . '" alt="user avatar"
                             class="border rounded w-100 h-100 rounded-circle" style="object-fit: cover">';
                         } else {
                             echo '<small class="fa fa-user text-body"></small>';
@@ -147,16 +150,12 @@
             </div>
         </nav>
         <script>
-            const search_input = document.querySelector('#search_input');
-            const search_icon = document.querySelector('#search_icon');
-            const search_submit = document.querySelector('#search_submit');
             const search_form = document.querySelector('#search_form');
+            const search_icon = document.querySelector('#search_icon');
             search_icon.onclick = () => {
-                search_input.classList.toggle("d-none");
+                search_form.classList.toggle("d-none");
             };
-            search_submit.onclick = () => {
-                search_form.submit();
-            };
+
         </script>
     </div>
     <!-- Navbar End -->
