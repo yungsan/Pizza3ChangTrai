@@ -2,7 +2,7 @@
 require_once('../../config/database.php');
 $sql = "SELECT * FROM products";
 $products = $connect->query($sql);
-$total = $products->num_rows;
+$total = $products->num_rows; 
 ?>
 
 <!-- Cards -->
@@ -52,6 +52,7 @@ $total = $products->num_rows;
                     <th class="px-4 py-3">#</th>
                     <th class="px-4 py-3">Tên sản phẩm</th>
                     <th class="px-4 py-3">Chuyên mục</th>
+                    <th class="px-4 py-3">Người tạo</th>
                     <th class="px-4 py-3">Ngày tạo</th>
                     <th class="px-4 py-3">Ngày cập nhật</th>
                     <th class="px-4 py-3">####</th>
@@ -64,6 +65,8 @@ $total = $products->num_rows;
                     $c_id = $row['category_id'];
                     $sql = "SELECT category_name FROM products, categories WHERE categories.id = $c_id";
                     $category_name = ($connect->query($sql))->fetch_assoc();
+                    $sql = "SELECT * FROM users WHERE id = ".$row['user_id'];
+                    $user = ($connect->query($sql))->fetch_assoc();
                     echo '<tr class="text-gray-700 dark:text-gray-400 product_item">
                             <td class="px-4 py-3 text-sm product_id">
                                 ' . $row['id'] . '
@@ -87,6 +90,12 @@ $total = $products->num_rows;
                                 <span
                                     class="px-6 py-1 font-semibold leading-tight text-primary-700 bg-primary-100 rounded-full dark:bg-green-700 dark:text-green-100">
                                     '.$category_name['category_name'].'
+                                </span>
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                <span
+                                    class="px-6 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                    '.$user['fullname'].'
                                 </span>
                             </td>
                             <td class="px-4 py-3 text-xs">

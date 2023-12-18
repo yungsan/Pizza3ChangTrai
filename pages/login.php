@@ -28,14 +28,14 @@ if (isset($_SESSION['user'])){
                     <form action="pages/handleLogin.php" class="signin-form" method="POST">
                         <div class="form-group mb-3">
                             <label class="form-label fw-bold" for="username">Tên đăng nhập</label>
-                            <input type="text" name="username" class="form-control p-3 rounded-pill" placeholder="Username" required>
+                            <input type="text" name="username" class="form-control p-3 rounded-pill" placeholder="Username" id="l_username" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label fw-bold" for="password">Mật khẩu</label>
-                            <input type="password" name="password" class="form-control p-3 rounded-pill" placeholder="Password" required>
+                            <input type="password" name="password" class="form-control p-3 rounded-pill" placeholder="Password" id="l_password" required>
                         </div>
                         <div class="form-group mt-4">
-                            <button type="submit" class="btn btn-primary rounded-pill py-sm-3 px-sm w-100">Đăng
+                            <button type="submit" class="btn btn-primary rounded-pill py-sm-3 px-sm w-100" id='loginSubmitButton'>Đăng
                                 nhập</button>
                         </div>
                         <div class="form-group d-md-flex my-4">
@@ -54,3 +54,33 @@ if (isset($_SESSION['user'])){
         </div>
     </div>
 </section>
+
+<script>
+    $('#loginSubmitButton').on('click', (e) => {
+        e.preventDefault();
+        const username = $('#l_username').val();
+        const password = $('#l_password').val();
+
+        const data = {
+            username, password
+        };
+
+        $.ajax({
+            url: "pages/handleLogin.php",
+            type: 'POST',
+            data: data,
+            success: function (response) {
+                if (response != 'Tài khoản không tồn tại!') {
+                    alert('Đăng nhập thành công!');
+                    window.location.href = './?page=' + response;
+                }
+                else {
+                    alert(response);
+                }
+            },
+            error: function (error) {
+                alert(error);
+            }
+        });
+    });
+</script>

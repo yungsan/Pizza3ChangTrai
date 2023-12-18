@@ -24,7 +24,7 @@ if(!$products) {
                 <div class="col-lg-4">
                     <div class="section-header text-start mb-5 wow fadeInUp" data-wow-delay="0.1s"
                         style="max-width: 500px;">
-                        <h1 class="display-5 mb-3">Sản phẩm tìm được</h1>
+                        <h1 class="display-5 mb-3">Sản phẩm</h1>
                     </div>
                 </div>
                 <div class="col-lg-8 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">

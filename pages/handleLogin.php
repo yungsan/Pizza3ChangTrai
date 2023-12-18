@@ -1,28 +1,27 @@
 <?php
 require_once("../config/database.php");
-$username = $_POST["username"];
+$username = trim($_POST["username"]);
 $password = md5($_POST["password"]);
 
-$sql = "SELECT *
-        FROM users 
+$sql = "SELECT * FROM users 
         WHERE 
             username = '$username' AND 
             password = '$password'";
 
-$products = $connect->query($sql);
+$user = $connect->query($sql);
+$page = 'user';
 
-if ($products->num_rows == 0) {
-    echo "dang nhap that bai";
+if ($user->num_rows == 0) {
+    echo "Tài khoản không tồn tại!";
 } else {
-    $row = $products->fetch_assoc();
+    $row = $user->fetch_assoc();
     session_start();
     $_SESSION["user"] = $row;
-    $page = 'user';
     if ($_SESSION['user']['role'] == 'admin'){
         $page = 'admin';
     }
-    header("Location: ../?page=".$page);
-    exit();
+    echo $page;
 }
+
 
 ?>

@@ -25,10 +25,9 @@ if(!$products) {
                 </nav>
             </div>
             <div class="row g-0 gx-5 align-items-end">
-                <div class="col-lg-4">
-                    <div class="section-header text-start mb-5 wow fadeInUp" data-wow-delay="0.1s"
-                        style="max-width: 500px;">
-                        <h1 class="display-5 mb-3">Sản phẩm</h1>
+                <div class="col-lg-12">
+                    <div class="section-header text-start mb-5 wow fadeInUp" data-wow-delay="0.1s">
+                        <h1 class="display-5 mb-3">Sản phẩm tìm được</h1>
                     </div>
                 </div>
             </div>
