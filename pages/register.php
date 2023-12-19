@@ -64,7 +64,9 @@
             data: data,
             success: function (response) {
                 alert(response);
-                window.location.href = "./?page=login";
+                if (response == 'Đăng ký thành công!'){
+                    window.location.href = "./?page=login";
+                }
             },
             error: function (error) {
                 alert(error);
