@@ -123,7 +123,7 @@ if(!$products) {
                                         <div class="text-center p-4">
                                             <a class="d-block text-uppercase h5 mb-2 text-black text" href="#">'.$row['product_name'].'</a>
                                             <span class="text-secondary me-1 fw-bold">'.number_format($row['price'], 0, '.', '.').' đ</span>
-                                            <span class="text-body text-decoration-line-through">$29.00</span>
+                                            <span class="text-body text-decoration-line-through">499.000 đ</span>
                                         </div>
                                         <div class="d-flex border-top">
                                             <small class="w-100 text-center border-end py-2">
@@ -135,7 +135,7 @@ if(!$products) {
                     }
                     ?>
                     <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-                        <a class="btn btn-primary rounded-pill py-3 px-5" href="">Browse More Products</a>
+                        <a class="btn btn-primary rounded-pill py-3 px-5" href="./?page=products">Xem thêm sản phẩm</a>
                     </div>
                 </div>
             </div>
