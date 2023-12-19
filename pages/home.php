@@ -1,6 +1,6 @@
 <?php
 require_once('config/database.php');
-$sql = "SELECT * FROM products";
+$sql = "SELECT * FROM products ORDER BY id DESC";
 $products = $connect->query($sql);
 if(!$products) {
     echo "Error";
