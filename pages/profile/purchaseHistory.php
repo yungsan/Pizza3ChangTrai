@@ -13,6 +13,8 @@ $bills = $connect->query($sql);
                         <thead>
                             <tr>
                                 <th scope="col">Mã hoá đơn</th>
+                                <th scope="col">SĐT người đặt</th>
+                                <th scope="col">Địa chỉ giao hàng</th>
                                 <th scope="col">Tổng tiền</th>
                                 <th scope="col">Ngày lập hoá đơn</th>
                             </tr>
@@ -24,12 +26,14 @@ $bills = $connect->query($sql);
                                         <th scope="row">
                                             <a href="?page=user&nav=detailBill&id='.$row['id'].'" class="text-black text-decoration-underline">'.$row['id'].'</a>
                                         </th>
+                                        <td>'.$row['sdt'].'</td>
+                                        <td>'.$row['address'].'</td>
                                         <td>
                                         <button class="btn btn-primary rounded-pill">'
                                             . number_format($row['total'], 0, '.', '.').
                                         '</button>
                                         </td>
-                                        <td>'.$row['created_at'].'</td>
+                                        <td class="text-success fw-bold rounded-pill">'.$row['created_at'].'</td>
                                     </tr>';
                             }
                             ?>

@@ -18,17 +18,17 @@
                         <div class="container">
                             <div class="mb-3">
                                 <label for="fullname" class='form-label fw-bold'>Họ tên</label>
-                                <input type="text" name="fullname" id="fullname" class='form-control p-3'
+                                <input type="text" name="fullname" id="fullname" class='form-control p-3' disabled
                                     placeholder="Full name" value="<?php echo $_SESSION['user']['fullname'] ?>">
                             </div>
                             <div class="mb-3">
                                 <label for="sdt" class='form-label fw-bold'>Số điện thoại</label>
-                                <input type="text" name="sdt" id="sdt" class='form-control p-3'
+                                <input type="text" name="sdt" id="sdt" class='form-control p-3' required
                                     placeholder="Phone numbers" value="<?php echo $_SESSION['user']['sdt'] ?>">
                             </div>
                             <div class="mb-3">
                                 <label for="address" class='form-label fw-bold'>Địa chỉ</label>
-                                <input type="text" name="address" id="address" class='form-control p-3'
+                                <input type="text" name="address" id="address" class='form-control p-3' required
                                     placeholder="Address" value="<?php echo $_SESSION['user']['address'] ?>">
                             </div>
                             <div class="mb-1">
@@ -123,9 +123,23 @@
             e.preventDefault();
             const user_id = document.querySelector('#uid').value;
             const products = JSON.parse(localStorage.getItem('cart'));
+            const fullname = document.querySelector('#fullname').value;
+            const sdt = document.querySelector('#sdt').value;
+            const address = document.querySelector('#address').value;
+            if (!sdt) {
+                alert('Bạn chưa nhập số điện thoại.')
+                return;
+            }
+            if (!address) {
+                alert('Bạn chưa nhập địa chỉ.')
+                return;
+            }
             const data = {
                 user_id,
-                products
+                products,
+                fullname, 
+                sdt,
+                address
             };
             $.ajax({
                 url: "pages/cart/handleCheckout.php",

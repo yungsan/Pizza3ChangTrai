@@ -26,8 +26,14 @@ else if ($page === 'edit_product'){
 else if ($page === 'categories'){
     include('pages/categories/index.php');
 }
+else if ($page === 'edit_category'){
+    include('pages/categories/edit.php');
+}
 else if ($page === 'order'){
     include('pages/order/index.php');
+}
+else if ($page === 'order_detail'){
+    include('pages/order/detail.php');
 }
 else if ($page === 'create_category'){
     include('pages/categories/create.php');

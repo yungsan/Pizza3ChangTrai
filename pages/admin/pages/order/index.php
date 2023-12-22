@@ -1,6 +1,6 @@
 <?php
 require_once('../../config/database.php');
-$sql = "SELECT bills.id, fullname, email, total, created_at FROM bills, users WHERE bills.user_id = users.id ORDER BY id DESC";
+$sql = "SELECT bills.id, fullname, email, total, bills.sdt, bills.address, created_at FROM bills, users WHERE bills.user_id = users.id ORDER BY id DESC";
 $order = $connect->query($sql);
 $total = $order->num_rows;
 
@@ -13,8 +13,10 @@ $total = $order->num_rows;
                     class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                     <th class="px-4 py-3">Mã hoá đơn</th>
                     <th class="px-4 py-3">Khách hàng</th>
+                    <th class="px-4 py-3">Địa chỉ giao hàng</th>
+                    <th class="px-4 py-3">SĐT người đặt</th>
                     <th class="px-4 py-3">Tổng tiền</th>
-                    <th class="px-4 py-3">Ngày lập hoá đon</th>
+                    <th class="px-4 py-3">Ngày lập hoá đơn</th>
                     <th class="px-4 py-3">Trạng thái</th>
                 </tr>
             </thead>
@@ -24,7 +26,7 @@ $total = $order->num_rows;
                 while ($row = $order->fetch_assoc()) {
                     echo '<tr class="text-gray-700 dark:text-gray-400">
                             <td class="px-4 py-3 text-sm font-bold">
-                                ' . $row['id'] . '
+                                <a href="?page=order_detail&id='.$row['id'].'" class="underline">' . $row['id'] . '
                             </td>
                             <td class="px-4 py-3 text-sm">
                                 <div>
@@ -33,6 +35,12 @@ $total = $order->num_rows;
                                         . $row['email'] .
                                     '</p>
                                 </div>
+                            </td>
+                            <td class="px-4 py-3 text-sm text-primary">
+                                ' . $row['address'] . '
+                            </td>
+                            <td class="px-4 py-3 text-sm text-primary">
+                                ' . $row['sdt'] . '
                             </td>
                             <td class="px-4 py-3 text-sm text-primary">
                                 ' . number_format($row['total'], 0, '.', '.') . '
