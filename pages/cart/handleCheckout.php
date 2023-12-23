@@ -32,6 +32,22 @@ foreach($products as $row){
     }
 }
 
+$sql = "SELECT * FROM users WHERE id = $user_id";
+
+if ($connect->query($sql)) {
+    $user_fullname = ($connect->query($sql)->fetch_assoc())['fullname'];
+    if (strlen($user_fullname) == 0) {
+        $sql = "UPDATE users SET fullname = '$fullname' WHERE id = $user_id";
+        if (!$connect->query($sql)) {
+            echo "Cập nhật tên khách hàng thất bại!";
+            exit();
+        }
+        session_start();
+        $_SESSION['user']['fullname'] = $fullname;
+    }
+}
+
+
 echo "Đặt hàng thành công!";
 
 ?>

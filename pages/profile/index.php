@@ -14,7 +14,7 @@ $row = $_SESSION['user'];
                             clip-rule="evenodd" />
                     </svg>
 
-                    <img src="<?php echo $row['avatar']; ?>" alt="user avatar"
+                    <img src="pages/profile/<?php echo $row['avatar']; ?>" alt="user avatar"
                         class=' border rounded w-100 h-100 rounded-circler' style="object-fit: cover" id="avatar">
                     <input type="file" name="avatar" id="inputFile" hidden>
                     <div class="bg-danger rounded text-white position-absolute end-0 top-0 m-2 py-1 px-3 d-none"

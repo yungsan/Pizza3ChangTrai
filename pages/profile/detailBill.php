@@ -1,4 +1,5 @@
 <?php
+require('config/database.php');
 $bill_id = $_GET['id'];
 $sql = "SELECT * FROM bills_detail, products 
         WHERE bills_detail.product_id = products.id

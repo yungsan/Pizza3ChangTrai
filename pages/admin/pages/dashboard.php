@@ -1,8 +1,8 @@
 <?php
 require_once('../../config/database.php');
 $sql = "SELECT * FROM users WHERE role = 'user'";
-$products = $connect->query($sql);
-$total = $products->num_rows;
+$result = $connect->query($sql);
+$total_item = $connect->query($sql)->num_rows;
 ?>
 
 
@@ -22,7 +22,7 @@ $total = $products->num_rows;
                 Total clients
             </p>
             <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                <?php echo $total ?>
+                <?php echo $total_item ?>
             </p>
         </div>
     </div>
@@ -99,7 +99,7 @@ $total = $products->num_rows;
             </thead>
             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                 <?php
-                while ($row = $products->fetch_assoc()) {
+                while ($row = $result->fetch_assoc()) {
                     echo '<tr class="text-gray-700 dark:text-gray-400">
                             <td class="px-4 py-3 text-sm">
                                 ' . ($row['id'] - 1) . '
@@ -109,7 +109,7 @@ $total = $products->num_rows;
                                     <!-- Avatar with inset shadow -->
                                     <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
                                         <img class="object-cover w-full h-full rounded-full"
-                                            src="../../' . $row['avatar'] . '"
+                                            src="../profile/' . $row['avatar'] . '"
                                             alt="" loading="lazy" />
                                         <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
                                         </div>

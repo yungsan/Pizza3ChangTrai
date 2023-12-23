@@ -1,9 +1,17 @@
+<?php 
+$page = 'Home';
+if (isset($_GET['page'])) {
+    $page = ucfirst($_GET['page']); 
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Pizza 3 Chàng Trai</title>
+    <title>
+        <?php echo $page; ?>
+    </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -58,6 +66,18 @@
             background: #FFB30E;
             border-radius: .25rem;
         }
+/*         
+        #navbarCollapse .nav-link{
+            color: 
+            <?php 
+            if ($page == 'Home') {
+                echo "white !important";
+            }    
+            else {
+                echo "black";
+            }
+            ?> 
+        } */
     </style>
 </head>
 
@@ -128,12 +148,8 @@
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="?page=login">
                         <?php
                         if (isset($_SESSION['user'])) {
-                            require_once('config/database.php');
-                            $user_id = $_SESSION['user']['id'];
-                            $products = $connect->query("SELECT * FROM users WHERE id='$user_id'");
-                            $row = $products->fetch_assoc();
-                            $user_avatar = $row['avatar'];
-                            echo '<img src="' . $user_avatar . '" alt="user avatar"
+                            $user_avatar = $_SESSION['user']['avatar'];
+                            echo '<img src="pages/profile/' . $user_avatar . '" alt="user avatar"
                             class="border rounded w-100 h-100 rounded-circle" style="object-fit: cover">';
                         } else {
                             echo '<small class="fa fa-user text-body"></small>';

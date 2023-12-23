@@ -18,7 +18,7 @@
                         <div class="container">
                             <div class="mb-3">
                                 <label for="fullname" class='form-label fw-bold'>Họ tên</label>
-                                <input type="text" name="fullname" id="fullname" class='form-control p-3' disabled
+                                <input type="text" name="fullname" id="fullname" class='form-control p-3'
                                     placeholder="Full name" value="<?php echo $_SESSION['user']['fullname'] ?>">
                             </div>
                             <div class="mb-3">
@@ -126,12 +126,16 @@
             const fullname = document.querySelector('#fullname').value;
             const sdt = document.querySelector('#sdt').value;
             const address = document.querySelector('#address').value;
+            if (!fullname) {
+                alert('Bạn chưa nhập tên.');
+                return;
+            }
             if (!sdt) {
-                alert('Bạn chưa nhập số điện thoại.')
+                alert('Bạn chưa nhập số điện thoại.');
                 return;
             }
             if (!address) {
-                alert('Bạn chưa nhập địa chỉ.')
+                alert('Bạn chưa nhập địa chỉ.');
                 return;
             }
             const data = {

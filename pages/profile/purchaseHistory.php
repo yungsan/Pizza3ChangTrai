@@ -1,4 +1,5 @@
 <?php
+require('config/database.php');
 $user = $_SESSION['user'];
 $sql = "SELECT * FROM bills WHERE user_id = ".$user['id']." ORDER BY id DESC"; 
 $bills = $connect->query($sql);
