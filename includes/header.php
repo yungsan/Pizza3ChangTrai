@@ -66,18 +66,9 @@ if (isset($_GET['page'])) {
             background: #FFB30E;
             border-radius: .25rem;
         }
-/*         
-        #navbarCollapse .nav-link{
-            color: 
-            <?php 
-            if ($page == 'Home') {
-                echo "white !important";
-            }    
-            else {
-                echo "black";
-            }
-            ?> 
-        } */
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 

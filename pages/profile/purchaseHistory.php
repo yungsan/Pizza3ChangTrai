@@ -30,11 +30,15 @@ $bills = $connect->query($sql);
                                         <td>'.$row['sdt'].'</td>
                                         <td>'.$row['address'].'</td>
                                         <td>
-                                        <button class="btn btn-primary rounded-pill">'
-                                            . number_format($row['total'], 0, '.', '.').
-                                        '</button>
+                                            <button class="btn btn-primary rounded-pill">'
+                                                . number_format($row['total'], 0, '.', '.').
+                                            '</button>
                                         </td>
-                                        <td class="text-success fw-bold rounded-pill">'.$row['created_at'].'</td>
+                                        <td class="rounded-pill">
+                                            <button class="btn btn-secondary rounded-pill">'
+                                                .$row['created_at'].
+                                            '</button>
+                                        </td>
                                     </tr>';
                             }
                             ?>
