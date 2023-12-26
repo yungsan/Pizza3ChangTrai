@@ -53,8 +53,7 @@ $total = $products->num_rows;
                     <th class="px-4 py-3">Tên sản phẩm</th>
                     <th class="px-4 py-3">Chuyên mục</th>
                     <th class="px-4 py-3">Người tạo</th>
-                    <th class="px-4 py-3">Ngày tạo</th>
-                    <th class="px-4 py-3">Ngày cập nhật</th>
+                    <th class="px-4 py-3">Thời gian</th>
                     <th class="px-4 py-3">####</th>
                 </tr>
             </thead>
@@ -82,7 +81,7 @@ $total = $products->num_rows;
                                         </div>
                                     </div>
                                     <div>
-                                        <p class="font-semibold">' . $row['product_name'] . '</p>
+                                        <a href="?page=edit_product&id='.$row['id'].'" class="font-semibold underline block w-56 overflow-hidden whitespace-nowrap  truncate ">' . $row['product_name'] . '</a>
                                     </div>
                                 </div>
                             </td>
@@ -99,23 +98,14 @@ $total = $products->num_rows;
                                 </span>
                             </td>
                             <td class="px-4 py-3 text-xs">
-                                <span
-                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                <span title="Ngày tạo"
+                                    class="px-2 block mb-3 text-center py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
                                     ' . $row['created_at'] . '
                                 </span>
-                            </td>
-                            <td class="px-4 py-3 text-xs">
-                                <span
-                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                <span title="Ngày cập nhật"
+                                    class="px-2 py-1 block text-center font-semibold leading-tight text-secondary-700 bg-secondary-100 rounded-full dark:bg-yellow-700 dark:text-yellow-100">
                                     ' . $row['updated_at'] . '
                                 </span>
-                            </td>
-                            <td class="px-4 py-3 text-xs text-right">
-                                <a href="?page=edit_product&id='.$row['id'].'">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-primary-500  rounded-full dark:bg-red-700 dark:text-red-100 cursor-pointer edit_button">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                                    </svg>
-                                </a>
                             </td>
                             <td class="px-4 py-3 text-xs text-right">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-red-700  rounded-full dark:bg-red-700 dark:text-red-100 cursor-pointer delete_button">
@@ -128,74 +118,6 @@ $total = $products->num_rows;
                 ?>
             </tbody>
         </table>
-    </div>
-    <div
-        class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
-        <span class="flex items-center col-span-3">
-            Showing 21-30 of 100
-        </span>
-        <span class="col-span-2"></span>
-        <!-- Pagination -->
-        <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
-            <nav aria-label="Table navigation">
-                <ul class="inline-flex items-center">
-                    <li>
-                        <button class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple"
-                            aria-label="Previous">
-                            <svg aria-hidden="true" class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                <path
-                                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                    clip-rule="evenodd" fill-rule="evenodd"></path>
-                            </svg>
-                        </button>
-                    </li>
-                    <li>
-                        <button
-                            class="px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple">
-                            1
-                        </button>
-                    </li>
-                    <li>
-                        <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
-                            2
-                        </button>
-                    </li>
-                    <li>
-                        <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
-                            3
-                        </button>
-                    </li>
-                    <li>
-                        <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
-                            4
-                        </button>
-                    </li>
-                    <li>
-                        <span class="px-3 py-1">...</span>
-                    </li>
-                    <li>
-                        <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
-                            8
-                        </button>
-                    </li>
-                    <li>
-                        <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
-                            9
-                        </button>
-                    </li>
-                    <li>
-                        <button class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple"
-                            aria-label="Next">
-                            <svg class="w-4 h-4 fill-current" aria-hidden="true" viewBox="0 0 20 20">
-                                <path
-                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                    clip-rule="evenodd" fill-rule="evenodd"></path>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-            </nav>
-        </span>
     </div>
 </div>
 

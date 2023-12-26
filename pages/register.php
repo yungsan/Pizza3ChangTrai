@@ -15,13 +15,13 @@
                     <form action="pages/handleRegister.php" method="POST" class="signin-form">
                         <div class="form-group mb-3">
                             <label class="form-label fw-bold" for="username">Tên đăng nhập</label>
-                            <input type="text" name="username" class="form-control p-3 rounded-pill" id='r_username'
+                            <input type="text" name="username" class="form-control p-3 rounded-pill" id='r_username' autofocus
                                 placeholder="Username" required>
                         </div>
                         <div class="form-group mb-3">
                             <label class="form-label fw-bold" for="username">Email</label>
                             <input type="email" name="email" class="form-control p-3 rounded-pill" id='r_email'
-                                placeholder="Username" required>
+                                placeholder="example@gmail.com" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label fw-bold" for="password">Mật khẩu</label>
@@ -53,6 +53,19 @@
         const username = $('#r_username').val();
         const email = $('#r_email').val();
         const password = $('#r_password').val();
+
+        if (!username){
+            alert('Vui lòng nhập username');
+            return;
+        }
+        if (!email){
+            alert('Vui lòng nhập email');
+            return;
+        }
+        if (!password){
+            alert('Vui lòng nhập password');
+            return;
+        }
 
         const data = {
             username, email, password

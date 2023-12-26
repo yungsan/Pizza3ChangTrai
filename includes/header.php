@@ -1,7 +1,7 @@
-<?php 
+<?php
 $page = 'Home';
 if (isset($_GET['page'])) {
-    $page = ucfirst($_GET['page']); 
+    $page = ucfirst($_GET['page']);
 }
 ?>
 <!DOCTYPE html>
@@ -57,6 +57,14 @@ if (isset($_GET['page'])) {
             -webkit-box-orient: vertical;
         }
 
+        .limit_text {
+            display: inline-block;
+            width: 50px;
+            white-space: nowrap;
+            overflow: hidden !important;
+            text-overflow: ellipsis;
+        }
+
         ::-webkit-scrollbar {
             width: 4px;
             height: 5px;
@@ -66,6 +74,7 @@ if (isset($_GET['page'])) {
             background: #FFB30E;
             border-radius: .25rem;
         }
+
         html {
             scroll-behavior: smooth;
         }
@@ -124,8 +133,8 @@ if (isset($_GET['page'])) {
                     <a href="./?page=blog" class="nav-item nav-link">Blog</a>
                     <form action="pages/search/handleSearch.php" method="GET" id='search_form' class='d-none'>
                         <div class="position-absolute top-50 start-0 py-2 w-100">
-                            <input type="text" class='w-75 p-3 form-control rounded-pill rounded-end' autofocus name="keyword"
-                                placeholder="Nhập tên món ăn" id='searchInput'>
+                            <input type="text" class='w-75 p-3 form-control rounded-pill rounded-end' autofocus
+                                name="keyword" placeholder="Nhập tên món ăn" id='searchInput'>
                             <button
                                 class='btn btn-primary p-3 position-absolute top-50 end-0 translate-middle rounded-pill rounded-start'
                                 id='search_submit'>Tìm kiếm</button>

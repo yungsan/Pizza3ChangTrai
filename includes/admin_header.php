@@ -28,8 +28,8 @@ else if ($title == 'Create_category'){
     <script src="./assets/js/init-alpine.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" defer></script>
-    <script src="./assets/js/charts-lines.js" defer></script>
-    <script src="./assets/js/charts-pie.js" defer></script>
+    <!-- <script src="./assets/js/charts-lines.js" defer></script>
+    <script src="./assets/js/charts-pie.js" defer></script> -->
     <script src="../../assets/js/jquery.min.js"></script>
 
 
@@ -444,10 +444,7 @@ else if ($title == 'Create_category'){
                 </div>
             </header>
             <main class="h-full overflow-y-auto">
-                <div class="container px-6 mx-auto grid">
-                    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                            <?php echo $title ?>
-                    </h2>
+                <div class="container px-6 mt-8 mx-auto grid">
                     <!-- CTA -->
                     <a class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
                         href="../../">
