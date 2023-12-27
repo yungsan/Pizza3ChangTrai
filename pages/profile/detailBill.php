@@ -1,9 +1,9 @@
 <?php
 require('config/database.php');
-$bill_id = $_GET['id'];
-$sql = "SELECT * FROM bills_detail, products 
-        WHERE bills_detail.product_id = products.id
-        AND bills_detail.bill_id = '$bill_id'";
+$invoice_id = $_GET['id'];
+$sql = "SELECT * FROM invoice_detail, products 
+        WHERE invoice_detail.product_id = products.id
+        AND invoice_detail.invoice_id = '$invoice_id'";
 $result = $connect->query($sql);
 ?>
 <section>

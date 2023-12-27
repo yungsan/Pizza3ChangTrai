@@ -1,6 +1,6 @@
 <?php
 require_once('../../config/database.php');
-$sql = "SELECT bills.id, fullname, email, total, bills.sdt, bills.address, created_at FROM bills, users WHERE bills.user_id = users.id ORDER BY id DESC";
+$sql = "SELECT i.id, fullname, email, total, i.sdt, i.address, created_at FROM invoices i, users WHERE i.user_id = users.id ORDER BY id DESC";
 $order = $connect->query($sql);
 $total = $order->num_rows;
 

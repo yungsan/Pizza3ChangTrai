@@ -36,10 +36,10 @@ function reset() {
 
     delete_buttons.forEach((btn, index) => {
         btn.addEventListener('click', () => {
-            cart_items[index].remove();
-    
             const cart = JSON.parse(localStorage.getItem('cart'));
-            cart.splice(cart[index], 1);
+            cart.splice(index, 1);
+            // cart_items[index].remove();
+    
             cart_count.innerHTML = cart.length;
             localStorage.setItem('cart', JSON.stringify(cart));
             

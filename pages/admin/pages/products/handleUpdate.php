@@ -6,8 +6,12 @@ $product_name = $_POST["product_name"];
 $product_price = $_POST["product_price"];
 $product_category = $_POST["product_category"];
 $product_description = $_POST["product_description"];
+$product_images_array = json_decode($_POST["product_images_array"]);
 
-// thumbnail
+// var_dump($product_images_array);
+// exit();
+
+// thumbnail 
 $new_path_thumbnail = NULL;
 if (isset($_FILES['thumbnail'])) {
     $temp_path_thumbnail = $_FILES['thumbnail']['tmp_name'];
@@ -16,18 +20,16 @@ if (isset($_FILES['thumbnail'])) {
 }
 
 // images
-$length = 0;
-$images_path = [];
 if (isset($_FILES['images'])){
     $length = count($_FILES['images']['name']);
     for ($i = 0; $i < $length; $i++){
         $temp_path_image = $_FILES['images']['tmp_name'][$i];
         $new_path_image = './upload/images/'.time().'_'.$_FILES['images']['name'][$i];
         move_uploaded_file($temp_path_image, $new_path_image);
-        array_push($images_path, $new_path_image);
+        array_push($product_images_array, $new_path_image);
     }
 }
-$images_path = json_encode($images_path);
+$product_images_array = json_encode($product_images_array);
 
 
 
@@ -36,17 +38,14 @@ $sql = "UPDATE products
             price = $product_price, 
             category_id = $product_category, 
             description = '$product_description'";
+
 if ($new_path_thumbnail){
     $sql .= ", thumbnail = '$new_path_thumbnail'";
 }
-if ($length > 0){
-    $sql .= ", images = '$images_path'" ;
 
-}
-        
+$sql .= ", images = '$product_images_array'" ;
 $sql .= "  WHERE id = $product_id";
         
-// echo $sql;
 if ($connect->query($sql)){
     echo "Cập nhật sản phẩm thành công!";
 }

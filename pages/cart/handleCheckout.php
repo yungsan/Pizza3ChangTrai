@@ -7,13 +7,13 @@ $fullname = $_POST['fullname'];
 $sdt = $_POST['sdt'];
 $address = $_POST['address'];
 $total = 0;
-$bill_id = time();
+$invoice_id = time();
 
 foreach($products as $row){
     $total += ($row['amount'] * $row['product_price']);
 }
 
-$sql = "INSERT INTO bills (id, user_id, total, sdt, address) VALUES ('$bill_id', $user_id, $total, '$sdt', '$address')";
+$sql = "INSERT INTO invoices (id, user_id, total, sdt, address) VALUES ('$invoice_id', $user_id, $total, '$sdt', '$address')";
 if (!$connect->query($sql)) {
     echo "Tạo hoá đơn thất bại!";
 }
@@ -25,7 +25,7 @@ foreach($products as $row){
     $price = $row['product_price'];
     $size = $row['size'];
     $total = $amount * $price;
-    $sql = "INSERT INTO bills_detail (bill_id, user_id, product_id, price, size, amount, total) VALUES ('$bill_id', $user_id, $product_id, $price, '$size', $amount, $total)";
+    $sql = "INSERT INTO invoice_detail (invoice_id, user_id, product_id, price, size, amount, total) VALUES ('$invoice_id', $user_id, $product_id, $price, '$size', $amount, $total)";
     if (!$connect->query($sql)){
         echo "Đặt hàng thất bại!";
         exit();

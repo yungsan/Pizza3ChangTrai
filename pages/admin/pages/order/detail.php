@@ -1,9 +1,9 @@
 <?php
 require_once('../../config/database.php');
-$bill_id = $_GET['id'];
-$sql = "SELECT * FROM bills_detail, products 
-        WHERE bills_detail.product_id = products.id
-        AND bills_detail.bill_id = '$bill_id'";
+$invoice_id = $_GET['id'];
+$sql = "SELECT * FROM invoice_detail i, products 
+        WHERE i.product_id = products.id
+        AND i.invoice_id = '$invoice_id'";
 $result = $connect->query($sql);
 ?>
 
@@ -28,7 +28,7 @@ $result = $connect->query($sql);
                 while ($row = $result->fetch_assoc()) {
                     echo '<tr class="text-gray-700 dark:text-gray-400">
                             <td class="px-4 py-3 text-sm font-bold">
-                                ' . $bill_id . '
+                                ' . $invoice_id . '
                             </td>
                             <td class="px-4 py-3 text-sm">
                                 <div>
