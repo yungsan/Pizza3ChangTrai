@@ -106,6 +106,7 @@ function sendData() {
         success: function (response) {
             console.log(response);
             alert(response);
+            location.reload();
         },
         error: function (error) {
             alert(error);

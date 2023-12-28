@@ -10,7 +10,7 @@ $result = $connect->query($sql);
     <div class="container-fluid page-header mb-5" style="background: none">
         <div class="row">
             <div class="col-md-9">
-                <div class="container">
+                <div class="container table-responsive">
                     <h3 class='mb-5 fw-bold'>Lịch sử mua hàng</h3>
                     <table class="table">
                         <thead>

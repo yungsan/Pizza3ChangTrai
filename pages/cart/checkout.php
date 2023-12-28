@@ -31,26 +31,9 @@
                                 <input type="text" name="address" id="address" class='form-control p-3' required
                                     placeholder="Address" value="<?php echo $_SESSION['user']['address'] ?>">
                             </div>
-                            <div class="mb-1">
-                                <label for="sdt" class='form-label fw-bold'>Phương thức thanh toán</label>
-                            </div>
-                            <div class="form-check mb-3">
-                                <input class="form-check-input" type="radio" name="payment_method" value='1'
-                                    id="flexRadioDefault1">
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                    Thanh toán khi nhận hàng
-                                </label>
-                            </div>
-                            <div class="form-check mb-3">
-                                <input class="form-check-input" type="radio" name="payment_method" value='2'
-                                    id="flexRadioDefault2">
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    Chuyển khoản
-                                </label>
-                            </div>
                             <input type="text" id="uid" value="<?php echo $_SESSION['user']['id'] ?>" hidden>
                             <div class="text-end">
-                                <button class='btn btn-primary w-50 p-2' id='order_button'>Đặt hàng</button>
+                                <button class='btn btn-primary w-100 p-3' id='order_button'>Đặt hàng</button>
                             </div>
                         </div>
                     </form>
@@ -104,18 +87,6 @@
             return total + item.total;
         }, 0)
         total.innerHTML = sum.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
-    </script>
-    <script>
-        const radio_buttons = document.querySelectorAll('.form-check input');
-        radio_buttons.forEach(btn => {
-            btn.addEventListener('change', () => {
-                let shipping = 0;
-                if (btn.value == 1) {
-                    shipping += 25000;
-                }
-                total.innerHTML = (_total + shipping).toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
-            });
-        });
     </script>
     <script>
         const order_button = document.querySelector('#order_button');

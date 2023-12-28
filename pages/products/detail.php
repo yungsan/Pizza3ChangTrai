@@ -98,7 +98,7 @@ $category = ($connect->query($sql))->fetch_assoc();
                         </button>
                     </div>
                     <div class="mb-3 row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                             <button id='addToCart_button' class='btn btn-primary p-3 rounded-pill w-100'>Thêm vào giỏ
                                 hàng</button>
                         </div>

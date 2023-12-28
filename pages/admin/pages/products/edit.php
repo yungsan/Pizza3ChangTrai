@@ -56,7 +56,7 @@ $result = ($connect->query($sql))->fetch_assoc();
             </button>
         </div>
     </div>
-    <div class="w-1/3">
+    <div class="md:w-1/3 w-full">
         <!-- thumbnail -->
         <div class="h-32 md:h-auto md:w-full cursor-pointer hover:opacity-50 rounded-md">
             <img aria-hidden="true" class="object-cover w-full h-full dark:hidden thumb  rounded-md"

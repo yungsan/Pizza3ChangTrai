@@ -8,16 +8,16 @@ $bills = $connect->query($sql);
     <div class="container-fluid page-header mb-5" style="background: none">
         <div class="row">
             <div class="col-md-9">
-                <div class="container">
+                <div class="container table-responsive">
                     <h3 class='mb-5 fw-bold'>Lịch sử mua hàng</h3>
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">Mã hoá đơn</th>
-                                <th scope="col">SĐT người đặt</th>
-                                <th scope="col">Địa chỉ giao hàng</th>
-                                <th scope="col">Tổng tiền</th>
-                                <th scope="col">Ngày lập hoá đơn</th>
+                                <th>Mã hoá đơn</th>
+                                <th>SĐT người đặt</th>
+                                <th>Địa chỉ giao hàng</th>
+                                <th>Tổng tiền</th>
+                                <th>Ngày lập hoá đơn</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,12 +30,12 @@ $bills = $connect->query($sql);
                                         <td>'.$row['sdt'].'</td>
                                         <td>'.$row['address'].'</td>
                                         <td>
-                                            <button class="btn btn-primary rounded-pill">'
+                                            <button class="btn btn-primary rounded-3">'
                                                 . number_format($row['total'], 0, '.', '.').
                                             '</button>
                                         </td>
-                                        <td class="rounded-pill">
-                                            <button class="btn btn-secondary rounded-pill">'
+                                        <td>
+                                            <button class="btn btn-secondary rounded-2">'
                                                 .$row['created_at'].
                                             '</button>
                                         </td>

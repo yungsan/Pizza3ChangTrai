@@ -25,28 +25,6 @@ $products = $connect->query($sql);
                         <h1 class="display-5 mb-3">Sản phẩm</h1>
                     </div>
                 </div>
-                <div class="col-lg-8 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
-                    <ul class="nav nav-pills d-inline-flex justify-content-end mb-5">
-                        <?php
-                        $sql = "SELECT * FROM categories";
-                        $categories = $connect->query($sql);
-                        $i = 1;
-                        while ($row = $categories->fetch_assoc()) {
-                            if ($row['category_name'] != 'Pizza') {
-                                echo '<li class="nav-item me-2">
-                                    <a class="btn btn-outline-primary border-2" data-bs-toggle="pill" href="#tab-' . $i . '">' . $row['category_name'] . '</a>
-                                </li>';
-                            } else {
-                                echo ' <li class="nav-item me-2">
-                                <a class="btn btn-outline-primary border-2 active" data-bs-toggle="pill" href="#tab-' . $i . '">' . $row['category_name'] . '</a>
-                                </li>';
-                            }
-
-                            $i++;
-                        }
-                        ?>
-                    </ul>
-                </div>
             </div>
             <div class="tab-content" id='abc'>
                 <div id="tab-1" class="tab-pane fade show p-0 active">
